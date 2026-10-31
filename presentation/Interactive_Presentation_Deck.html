@@ -20,6 +20,7 @@
     <div class="flex items-center gap-3">
       <span class="px-2.5 py-1 rounded bg-sky-500/20 text-sky-400 font-bold text-xs mono">STATEMENT #31</span>
       <span class="font-bold text-sm text-white">Predictive Underwriting — Digital Assignment Presentation &amp; Demo Walkthrough</span>
+      <a href="https://github.com/Indra-Official/FIntech" target="_blank" class="px-2.5 py-1 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 font-semibold text-xs mono">GitHub: Indra-Official/FIntech &nearr;</a>
     </div>
     <div class="flex items-center gap-3">
       <span id="slide-indicator" class="text-xs text-slate-400 mono">Slide 1 / 8</span>
@@ -190,19 +191,19 @@
           <div class="card p-4 border-l-4 border-l-sky-400">
             <div class="font-bold text-sky-400">Case 2: Fairness Showcase</div>
             <div class="mt-1 text-slate-300">Low-Income Zone, Telematics 84</div>
-            <div class="mt-2 mono text-lg font-bold text-white">$671.99/yr</div>
+            <div class="mt-2 mono text-lg font-bold text-white">$673.51/yr</div>
             <div class="text-sky-300 mt-1">TIER 2: STANDARD RISK</div>
           </div>
           <div class="card p-4 border-l-4 border-l-amber-400">
             <div class="font-bold text-amber-400">Case 3: Night Speeder</div>
             <div class="mt-1 text-slate-300">0 claims, 46% night, 42% speed</div>
-            <div class="mt-2 mono text-lg font-bold text-white">$8,476.40/yr</div>
+            <div class="mt-2 mono text-lg font-bold text-white">$9,074.95/yr</div>
             <div class="text-amber-300 mt-1">TIER 4: HIGH RISK / DECLINE</div>
           </div>
           <div class="card p-4 border-l-4 border-l-rose-400">
             <div class="font-bold text-rose-400">Case 4: High-Risk Decline</div>
             <div class="mt-1 text-slate-300">3 claims, Telematics 34.5</div>
-            <div class="mt-2 mono text-lg font-bold text-white">$8,350.29/yr</div>
+            <div class="mt-2 mono text-lg font-bold text-white">$8,380.24/yr</div>
             <div class="text-rose-300 mt-1">TIER 4: HIGH RISK / DECLINE</div>
           </div>
         </div>
@@ -224,13 +225,16 @@
           </ol>
         </div>
         <div class="card p-6 space-y-3">
-          <h3 class="text-lg font-bold text-emerald-400">GitHub Upload Commands</h3>
-          <pre class="mono text-xs bg-slate-950 p-4 rounded-xl border border-slate-800 text-slate-200 overflow-x-auto">git init
-git add .
-git commit -m "Statement #31: Predictive Underwriting (2026 Update)"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/predictive-underwriting-2026.git
-git push -u origin main</pre>
+          <h3 class="text-lg font-bold text-emerald-400">Official GitHub Repository</h3>
+          <div class="p-3 rounded-lg bg-slate-900 border border-sky-500/30">
+            <div class="text-xs text-slate-400">Repository URL:</div>
+            <a href="https://github.com/Indra-Official/FIntech" target="_blank" class="mono text-sm font-bold text-sky-400 hover:underline">https://github.com/Indra-Official/FIntech</a>
+          </div>
+          <pre class="mono text-xs bg-slate-950 p-4 rounded-xl border border-slate-800 text-slate-200 overflow-x-auto">git clone https://github.com/Indra-Official/FIntech.git
+cd FIntech
+pip install -r requirements.txt
+python generate_assets_and_ppt.py
+python app.py</pre>
         </div>
       </div>
     </div>

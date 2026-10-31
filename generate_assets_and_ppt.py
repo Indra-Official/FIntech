@@ -275,6 +275,18 @@ def _add_header(slide, title_text: str, subtitle_text: str, badge_text: str = "S
     p_b.font.bold = True
     p_b.font.color.rgb = RGBColor(56, 189, 248)
 
+    # Top-Right GitHub Link
+    tb_gh = slide.shapes.add_textbox(Inches(7.5), Inches(0.22), Inches(5.233), Inches(0.35))
+    tf_gh = tb_gh.text_frame
+    p_gh = tf_gh.paragraphs[0]
+    p_gh.alignment = PP_ALIGN.RIGHT
+    r_gh = p_gh.add_run()
+    r_gh.text = "GitHub: https://github.com/Indra-Official/FIntech"
+    r_gh.hyperlink.address = "https://github.com/Indra-Official/FIntech"
+    r_gh.font.size = Pt(10)
+    r_gh.font.bold = True
+    r_gh.font.color.rgb = RGBColor(56, 189, 248)
+
     # Title
     tb_title = slide.shapes.add_textbox(Inches(0.6), Inches(0.52), Inches(12.1), Inches(0.55))
     tf_t = tb_title.text_frame
@@ -313,10 +325,24 @@ def _add_card(slide, left, top, width, height, title: str, bullets: list, title_
 
     for b in bullets:
         p = tf.add_paragraph()
-        p.text = f"• {b}"
-        p.font.size = Pt(11.5)
-        p.font.color.rgb = RGBColor(226, 232, 240)
         p.space_after = Pt(5)
+        if "https://github.com/Indra-Official/FIntech" in b:
+            prefix, url_part = b.split("https://github.com/Indra-Official/FIntech", 1)
+            r1 = p.add_run()
+            r1.text = f"• {prefix}"
+            r1.font.size = Pt(11.5)
+            r1.font.color.rgb = RGBColor(226, 232, 240)
+
+            r2 = p.add_run()
+            r2.text = "https://github.com/Indra-Official/FIntech" + url_part
+            r2.hyperlink.address = "https://github.com/Indra-Official/FIntech"
+            r2.font.size = Pt(11.5)
+            r2.font.bold = True
+            r2.font.color.rgb = RGBColor(56, 189, 248)
+        else:
+            p.text = f"• {b}"
+            p.font.size = Pt(11.5)
+            p.font.color.rgb = RGBColor(226, 232, 240)
 
 
 def build_powerpoint_deck(summary, drift_q3, quarterly, privacy_curve, persona_results, charts, output_path):
@@ -363,7 +389,8 @@ def build_powerpoint_deck(summary, drift_q3, quarterly, privacy_curve, persona_r
             f"Calibration Error (ECE): {cal_i['ece']}",
             f"Disparate Impact Ratio: {fair_a['disparate_impact_ratio']} (≥0.80 Pass)",
             f"Loss Forecast Accuracy: {loss_f['loss_forecast_accuracy_pct']}%",
-            "Live Web Demo: Flask + Interactive Real-Time Telemetry Studio (http://127.0.0.1:5000)",
+            "Live Web Demo: Flask + Real-Time Telemetry Studio (http://127.0.0.1:5000)",
+            "GitHub Repo: https://github.com/Indra-Official/FIntech",
         ],
         title_rgb=(52, 211, 153),
     )
@@ -709,17 +736,16 @@ def build_powerpoint_deck(summary, drift_q3, quarterly, privacy_curve, persona_r
     )
     _add_card(
         s11, 6.85, 1.65, 5.85, 5.0,
-        "Quick-Start & GitHub Upload Commands",
+        "Quick-Start & GitHub Repository Link",
         [
-            "1. Install Dependencies:  pip install -r requirements.txt",
-            "2. Regenerate Benchmarks & Slides:  python generate_assets_and_ppt.py",
-            "3. Launch Interactive Live Demo:  python app.py  (http://127.0.0.1:5000)",
-            "4. Push to GitHub Repository:",
-            "   git init && git add .",
-            "   git commit -m 'Feat: Statement #31 Predictive Underwriting (2026 Update)'",
-            "   git branch -M main",
-            "   git remote add origin https://github.com/<username>/<repo>.git",
-            "   git push -u origin main",
+            "Official GitHub Repository: https://github.com/Indra-Official/FIntech",
+            "1. Clone Repository:  git clone https://github.com/Indra-Official/FIntech.git",
+            "2. Install Dependencies:  pip install -r requirements.txt",
+            "3. Regenerate Benchmarks & Slides:  python generate_assets_and_ppt.py",
+            "4. Launch Interactive Live Demo:  python app.py  (http://127.0.0.1:5000)",
+            "5. Git Remote Configuration:",
+            "   git remote add origin https://github.com/Indra-Official/FIntech.git",
+            "   git branch -M main && git push -u origin main",
         ],
         title_rgb=(52, 211, 153),
     )
@@ -741,6 +767,7 @@ def build_powerpoint_deck(summary, drift_q3, quarterly, privacy_curve, persona_r
             f"3. Audited Algorithmic Fairness: Eliminated regional socioeconomic proxy bias, lifting the Disparate Impact Ratio from {fair_b['disparate_impact_ratio']} to {fair_a['disparate_impact_ratio']} (compliant with the ≥0.80 regulatory threshold).",
             "4. Defense-in-Depth Data Privacy: Enforced salted SHA-256 PII tokenization, National ID redaction, k-anonymity age bands, and ε-Differential Privacy.",
             "5. Proactive Drift Governance: Automated PSI and KS-test monitoring across quarterly streams detects severe weather/behavioral shifts and triggers recalibration.",
+            "6. Full Source Code & Interactive Demo: https://github.com/Indra-Official/FIntech",
         ],
         title_rgb=(56, 189, 248),
     )
@@ -783,6 +810,7 @@ def build_interactive_html_deck(summary, quarterly, persona_results, output_path
     <div class="flex items-center gap-3">
       <span class="px-2.5 py-1 rounded bg-sky-500/20 text-sky-400 font-bold text-xs mono">STATEMENT #31</span>
       <span class="font-bold text-sm text-white">Predictive Underwriting — Digital Assignment Presentation &amp; Demo Walkthrough</span>
+      <a href="https://github.com/Indra-Official/FIntech" target="_blank" class="px-2.5 py-1 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/25 font-semibold text-xs mono">GitHub: Indra-Official/FIntech &nearr;</a>
     </div>
     <div class="flex items-center gap-3">
       <span id="slide-indicator" class="text-xs text-slate-400 mono">Slide 1 / 8</span>
@@ -987,13 +1015,16 @@ def build_interactive_html_deck(summary, quarterly, persona_results, output_path
           </ol>
         </div>
         <div class="card p-6 space-y-3">
-          <h3 class="text-lg font-bold text-emerald-400">GitHub Upload Commands</h3>
-          <pre class="mono text-xs bg-slate-950 p-4 rounded-xl border border-slate-800 text-slate-200 overflow-x-auto">git init
-git add .
-git commit -m "Statement #31: Predictive Underwriting (2026 Update)"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/predictive-underwriting-2026.git
-git push -u origin main</pre>
+          <h3 class="text-lg font-bold text-emerald-400">Official GitHub Repository</h3>
+          <div class="p-3 rounded-lg bg-slate-900 border border-sky-500/30">
+            <div class="text-xs text-slate-400">Repository URL:</div>
+            <a href="https://github.com/Indra-Official/FIntech" target="_blank" class="mono text-sm font-bold text-sky-400 hover:underline">https://github.com/Indra-Official/FIntech</a>
+          </div>
+          <pre class="mono text-xs bg-slate-950 p-4 rounded-xl border border-slate-800 text-slate-200 overflow-x-auto">git clone https://github.com/Indra-Official/FIntech.git
+cd FIntech
+pip install -r requirements.txt
+python generate_assets_and_ppt.py
+python app.py</pre>
         </div>
       </div>
     </div>

@@ -490,19 +490,19 @@
       },
       "evaluation": {
         "probabilities": {
-          "uncalibrated_prob": 0.1318,
-          "platt_calibrated_prob": 0.1108,
-          "isotonic_calibrated_prob": 0.0,
+          "uncalibrated_prob": 0.1293,
+          "platt_calibrated_prob": 0.1104,
+          "isotonic_calibrated_prob": 0.0003,
           "final_underwriting_prob": 0.02,
           "fairness_shift_applied": 0.0061
         },
         "pricing": {
           "expected_claim_severity_usd": 2885.16,
           "pure_premium_expected_loss_usd": 57.7,
-          "telematics_modifier_pct": -14.36,
-          "telematics_adjustment_usd": -8.29,
+          "telematics_modifier_pct": -13.84,
+          "telematics_adjustment_usd": -7.99,
           "fixed_admin_expense_usd": 115.0,
-          "solvency_and_expense_loading_usd": 75.58,
+          "solvency_and_expense_loading_usd": 75.28,
           "annual_technical_premium_usd": 240.0,
           "monthly_premium_usd": 20.0
         },
@@ -517,15 +517,15 @@
           "applicant_token": "TOK-1741B5AE2F32",
           "masked_national_id": "ID-XXXX-3910",
           "raw_credit_score": 765,
-          "dp_credit_score": 747,
+          "dp_credit_score": 752,
           "raw_telematics_score": 91.5,
-          "dp_telematics_score": 94.1
+          "dp_telematics_score": 93.3
         },
         "explainable_drivers": [
           {
             "factor": "Real-Time Telematics Score",
-            "value": "94.1 / 100",
-            "impact_pct": -16.6,
+            "value": "93.3 / 100",
+            "impact_pct": -16.0,
             "category": "Real-Time Stream"
           },
           {
@@ -548,8 +548,8 @@
           },
           {
             "factor": "Credit Stability Score (DP-Protected)",
-            "value": "747",
-            "impact_pct": -4.6,
+            "value": "752",
+            "impact_pct": -5.0,
             "category": "Historical Data"
           },
           {
@@ -584,8 +584,8 @@
       },
       "evaluation": {
         "probabilities": {
-          "uncalibrated_prob": 0.3531,
-          "platt_calibrated_prob": 0.1987,
+          "uncalibrated_prob": 0.3499,
+          "platt_calibrated_prob": 0.194,
           "isotonic_calibrated_prob": 0.2119,
           "final_underwriting_prob": 0.2049,
           "fairness_shift_applied": -0.007
@@ -593,12 +593,12 @@
         "pricing": {
           "expected_claim_severity_usd": 2089.99,
           "pure_premium_expected_loss_usd": 428.31,
-          "telematics_modifier_pct": -7.61,
-          "telematics_adjustment_usd": -32.59,
+          "telematics_modifier_pct": -7.34,
+          "telematics_adjustment_usd": -31.44,
           "fixed_admin_expense_usd": 115.0,
-          "solvency_and_expense_loading_usd": 161.28,
-          "annual_technical_premium_usd": 671.99,
-          "monthly_premium_usd": 56.0
+          "solvency_and_expense_loading_usd": 161.64,
+          "annual_technical_premium_usd": 673.51,
+          "monthly_premium_usd": 56.13
         },
         "decision": {
           "tier": "TIER 2: STANDARD RISK",
@@ -611,15 +611,15 @@
           "applicant_token": "TOK-1772E5327D69",
           "masked_national_id": "ID-XXXX-8144",
           "raw_credit_score": 635,
-          "dp_credit_score": 628,
+          "dp_credit_score": 641,
           "raw_telematics_score": 84.0,
-          "dp_telematics_score": 83.7
+          "dp_telematics_score": 83.3
         },
         "explainable_drivers": [
           {
             "factor": "Real-Time Telematics Score",
-            "value": "83.7 / 100",
-            "impact_pct": -8.8,
+            "value": "83.3 / 100",
+            "impact_pct": -8.5,
             "category": "Real-Time Stream"
           },
           {
@@ -642,8 +642,8 @@
           },
           {
             "factor": "Credit Stability Score (DP-Protected)",
-            "value": "628",
-            "impact_pct": 5.0,
+            "value": "641",
+            "impact_pct": 3.9,
             "category": "Historical Data"
           },
           {
@@ -678,21 +678,21 @@
       },
       "evaluation": {
         "probabilities": {
-          "uncalibrated_prob": 0.9121,
-          "platt_calibrated_prob": 0.738,
-          "isotonic_calibrated_prob": 0.8295,
-          "final_underwriting_prob": 0.8459,
+          "uncalibrated_prob": 0.9059,
+          "platt_calibrated_prob": 0.7501,
+          "isotonic_calibrated_prob": 0.8754,
+          "final_underwriting_prob": 0.8918,
           "fairness_shift_applied": 0.0164
         },
         "pricing": {
           "expected_claim_severity_usd": 6596.54,
-          "pure_premium_expected_loss_usd": 5579.91,
-          "telematics_modifier_pct": 13.39,
-          "telematics_adjustment_usd": 747.15,
+          "pure_premium_expected_loss_usd": 5883.04,
+          "telematics_modifier_pct": 15.28,
+          "telematics_adjustment_usd": 898.93,
           "fixed_admin_expense_usd": 115.0,
-          "solvency_and_expense_loading_usd": 2034.34,
-          "annual_technical_premium_usd": 8476.4,
-          "monthly_premium_usd": 706.37
+          "solvency_and_expense_loading_usd": 2177.99,
+          "annual_technical_premium_usd": 9074.95,
+          "monthly_premium_usd": 756.25
         },
         "decision": {
           "tier": "TIER 4: HIGH RISK / DECLINE",
@@ -705,15 +705,15 @@
           "applicant_token": "TOK-761D4CEE73DE",
           "masked_national_id": "ID-XXXX-6021",
           "raw_credit_score": 740,
-          "dp_credit_score": 723,
+          "dp_credit_score": 750,
           "raw_telematics_score": 49.0,
-          "dp_telematics_score": 51.4
+          "dp_telematics_score": 48.5
         },
         "explainable_drivers": [
           {
             "factor": "Real-Time Telematics Score",
-            "value": "51.4 / 100",
-            "impact_pct": 15.5,
+            "value": "48.5 / 100",
+            "impact_pct": 17.6,
             "category": "Real-Time Stream"
           },
           {
@@ -736,8 +736,8 @@
           },
           {
             "factor": "Credit Stability Score (DP-Protected)",
-            "value": "723",
-            "impact_pct": -2.6,
+            "value": "750",
+            "impact_pct": -4.8,
             "category": "Historical Data"
           },
           {
@@ -773,7 +773,7 @@
       "evaluation": {
         "probabilities": {
           "uncalibrated_prob": 0.8341,
-          "platt_calibrated_prob": 0.7064,
+          "platt_calibrated_prob": 0.7049,
           "isotonic_calibrated_prob": 0.7687,
           "final_underwriting_prob": 0.7747,
           "fairness_shift_applied": 0.0061
@@ -781,12 +781,12 @@
         "pricing": {
           "expected_claim_severity_usd": 6527.89,
           "pure_premium_expected_loss_usd": 5057.4,
-          "telematics_modifier_pct": 23.21,
-          "telematics_adjustment_usd": 1173.82,
+          "telematics_modifier_pct": 23.66,
+          "telematics_adjustment_usd": 1196.58,
           "fixed_admin_expense_usd": 115.0,
-          "solvency_and_expense_loading_usd": 2004.07,
-          "annual_technical_premium_usd": 8350.29,
-          "monthly_premium_usd": 695.86
+          "solvency_and_expense_loading_usd": 2011.26,
+          "annual_technical_premium_usd": 8380.24,
+          "monthly_premium_usd": 698.35
         },
         "decision": {
           "tier": "TIER 4: HIGH RISK / DECLINE",
@@ -799,15 +799,15 @@
           "applicant_token": "TOK-4202C61C60E3",
           "masked_national_id": "ID-XXXX-4409",
           "raw_credit_score": 540,
-          "dp_credit_score": 551,
+          "dp_credit_score": 545,
           "raw_telematics_score": 34.5,
-          "dp_telematics_score": 36.3
+          "dp_telematics_score": 35.6
         },
         "explainable_drivers": [
           {
             "factor": "Real-Time Telematics Score",
-            "value": "36.3 / 100",
-            "impact_pct": 26.8,
+            "value": "35.6 / 100",
+            "impact_pct": 27.3,
             "category": "Real-Time Stream"
           },
           {
@@ -830,8 +830,8 @@
           },
           {
             "factor": "Credit Stability Score (DP-Protected)",
-            "value": "551",
-            "impact_pct": 11.1,
+            "value": "545",
+            "impact_pct": 11.6,
             "category": "Historical Data"
           },
           {

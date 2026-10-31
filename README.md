@@ -2,7 +2,8 @@
 
 > **High Relevance | FinTech & InsurTech Digital Assignment**  
 > *Use historical and real-time data to improve insurance pricing, underwriting, and loss forecasting.*  
-> **2026 Regulatory Update:** *Includes Calibrated Risk Models, Continuous Model Monitoring (PSI & KS-Tests), Data Privacy ($\epsilon$-Differential Privacy & PII Tokenization), and Algorithmic Fairness Constraints.*
+> **2026 Regulatory Update:** *Includes Calibrated Risk Models, Continuous Model Monitoring (PSI & KS-Tests), Data Privacy ($\epsilon$-Differential Privacy & PII Tokenization), and Algorithmic Fairness Constraints.*  
+> **GitHub Repository:** [https://github.com/Indra-Official/FIntech](https://github.com/Indra-Official/FIntech)
 
 ---
 
@@ -151,6 +152,6 @@ git init
 git add .
 git commit -m "Feat: Statement #31 Predictive Underwriting & Loss Forecasting (2026 Update)"
 git branch -M main
-git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/<YOUR_REPO_NAME>.git
+git remote add origin https://github.com/Indra-Official/FIntech.git
 git push -u origin main
 ```
