@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Statement #31 — Predictive Underwriting Interactive Presentation Deck</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #0b0f19; color: #f8fafc; overflow: hidden; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .slide { display: none; height: calc(100vh - 64px); }
+    .slide.active { display: flex; }
+    .card { background: rgba(22, 31, 50, 0.9); border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 1rem; }
+  </style>
+</head>
+<body class="flex flex-col h-screen">
+
+  <!-- Top Controls -->
+  <header class="h-16 border-b border-slate-800 px-6 flex items-center justify-between bg-slate-950">
+    <div class="flex items-center gap-3">
+      <span class="px-2.5 py-1 rounded bg-sky-500/20 text-sky-400 font-bold text-xs mono">STATEMENT #31</span>
+      <span class="font-bold text-sm text-white">Predictive Underwriting — Digital Assignment Presentation &amp; Demo Walkthrough</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span id="slide-indicator" class="text-xs text-slate-400 mono">Slide 1 / 8</span>
+      <button onclick="prevSlide()" class="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-xs font-semibold">&larr; Prev</button>
+      <button onclick="nextSlide()" class="px-3 py-1.5 rounded bg-sky-600 hover:bg-sky-500 text-xs font-semibold">Next &rarr;</button>
+    </div>
+  </header>
+
+  <!-- Slides Container -->
+  <div class="flex-1 relative">
+
+    <!-- Slide 1 -->
+    <div class="slide active flex-col justify-center px-12 max-w-7xl mx-auto w-full gap-6">
+      <span class="text-xs uppercase tracking-widest text-sky-400 font-bold">FinTech Digital Assignment • 2026 Update</span>
+      <h1 class="text-4xl font-extrabold leading-tight">Statement #31 — Predictive Underwriting &amp; Loss Forecasting</h1>
+      <p class="text-lg text-slate-300 max-w-4xl">Using historical policy data and real-time IoT telematics streams to improve insurance pricing, automated underwriting, and portfolio loss forecasting — enhanced with <span class="text-sky-400 font-semibold">Calibrated Risk Models, Model Drift Monitoring, Data Privacy, and Fairness Constraints</span>.</p>
+      <div class="grid grid-cols-4 gap-4 pt-4">
+        <div class="card p-5">
+          <div class="text-xs text-slate-400">Calibrated Brier / ECE</div>
+          <div class="text-2xl font-extrabold text-emerald-400 mono mt-1">0.2072 / 0.0182</div>
+          <div class="text-xs text-slate-400 mt-1">Isotonic Probability Calibration</div>
+        </div>
+        <div class="card p-5">
+          <div class="text-xs text-slate-400">Portfolio Loss Accuracy</div>
+          <div class="text-2xl font-extrabold text-sky-400 mono mt-1">99.89%</div>
+          <div class="text-xs text-slate-400 mt-1">Pure Premium = P(C) &times; E[L|C]</div>
+        </div>
+        <div class="card p-5">
+          <div class="text-xs text-slate-400">Fairness Disparate Impact</div>
+          <div class="text-2xl font-extrabold text-indigo-400 mono mt-1">0.6171 &rarr; 0.9917</div>
+          <div class="text-xs text-slate-400 mt-1">Passes &ge; 0.80 EEOC Rule</div>
+        </div>
+        <div class="card p-5">
+          <div class="text-xs text-slate-400">Privacy &amp; Drift Guard</div>
+          <div class="text-2xl font-extrabold text-amber-400 mono mt-1">&epsilon;=2.5 DP + PSI</div>
+          <div class="text-xs text-slate-400 mt-1">SHA-256 + Laplace + KS Test</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide flex-col justify-center px-12 max-w-7xl mx-auto w-full gap-6">
+      <h2 class="text-2xl font-bold text-sky-400">1. Architecture: Historical + Real-Time Data Fusion</h2>
+      <div class="grid grid-cols-3 gap-6">
+        <div class="card p-6 space-y-2">
+          <h3 class="font-bold text-white text-lg">Historical Policy Inputs (8)</h3>
+          <ul class="text-sm text-slate-300 space-y-1.5 list-disc pl-4">
+            <li>Driver Age &amp; Years Licensed</li>
+            <li>Prior Claims (3-Year Window)</li>
+            <li>Credit Stability Score (DP-Protected)</li>
+            <li>Insured Vehicle Value (USD)</li>
+            <li>Vehicle Safety Rating (2★ to 5★)</li>
+            <li>Annual Mileage &amp; Policy Tenure</li>
+          </ul>
+        </div>
+        <div class="card p-6 space-y-2">
+          <h3 class="font-bold text-emerald-400 text-lg">Real-Time Telemetry Streams (5)</h3>
+          <ul class="text-sm text-slate-300 space-y-1.5 list-disc pl-4">
+            <li>Composite Telematics Score (0–100)</li>
+            <li>Harsh Braking Events per 100km</li>
+            <li>Night-Time Driving Ratio</li>
+            <li>GPS Overspeeding Ratio</li>
+            <li>Live Weather &amp; Route Hazard Index</li>
+          </ul>
+        </div>
+        <div class="card p-6 space-y-2">
+          <h3 class="font-bold text-indigo-400 text-lg">2026 Governance Layer</h3>
+          <ul class="text-sm text-slate-300 space-y-1.5 list-disc pl-4">
+            <li><b>Calibrated Risk:</b> Isotonic &amp; Platt Scaling</li>
+            <li><b>Fairness:</b> Reweighing + Group Parity</li>
+            <li><b>Privacy:</b> Salted SHA-256 + &epsilon;-Laplace DP</li>
+            <li><b>Monitoring:</b> PSI &amp; KS Drift Detection</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide flex-col justify-center px-12 max-w-7xl mx-auto w-full gap-6">
+      <h2 class="text-2xl font-bold text-emerald-400">2. Calibrated Risk Models &amp; Loss Forecasting (2026 Update)</h2>
+      <div class="grid grid-cols-2 gap-6 items-center">
+        <div class="card p-4">
+          <img src="../docs/images/calibration_reliability.png" alt="Calibration Curve" class="rounded-lg w-full" />
+        </div>
+        <div class="card p-6 space-y-3 text-sm text-slate-200">
+          <h3 class="text-lg font-bold text-white">Actuarial Calibration Results</h3>
+          <p>Uncalibrated cost-sensitive ensembles systematically overestimate claim probability, inflating customer premiums. We apply 5-fold cross-validated <b>Isotonic Regression Calibration</b>:</p>
+          <ul class="space-y-2 list-disc pl-4">
+            <li><b>Uncalibrated Ensemble:</b> Brier = <span class="mono text-rose-400">0.2265</span>, ECE = <span class="mono text-rose-400">0.1348</span></li>
+            <li><b>Isotonic Calibrated:</b> Brier = <span class="mono text-emerald-400">0.2072</span>, ECE = <span class="mono text-emerald-400">0.0182</span>, ROC-AUC = <span class="mono text-sky-400">0.725</span></li>
+            <li><b>Portfolio Loss Forecast:</b> Predicted <span class="mono text-sky-300">$1,376,917</span> vs. Actual <span class="mono text-emerald-300">$1,375,447</span> (<span class="mono font-bold">99.89%</span> accuracy).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide flex-col justify-center px-12 max-w-7xl mx-auto w-full gap-6">
+      <h2 class="text-2xl font-bold text-sky-400">3. Fairness Constraints &amp; Socioeconomic Bias Mitigation</h2>
+      <div class="grid grid-cols-2 gap-6 items-center">
+        <div class="card p-4">
+          <img src="../docs/images/fairness_mitigation.png" alt="Fairness Mitigation" class="rounded-lg w-full" />
+        </div>
+        <div class="card p-6 space-y-3 text-sm text-slate-200">
+          <h3 class="text-lg font-bold text-white">Satisfying the 80% Disparate Impact Rule</h3>
+          <p>Historical credit stability scores carry socioeconomic proxy bias against Low-Income Zone applicants. Our two-stage fairness constraint applies Kamiran-Calders sample weights during training and group parity calibration at inference:</p>
+          <ul class="space-y-2 list-disc pl-4">
+            <li><b>Disparate Impact Ratio (Before):</b> <span class="mono text-rose-400">0.6171</span> (Fails &ge;0.80 threshold)</li>
+            <li><b>Disparate Impact Ratio (After):</b> <span class="mono text-emerald-400">0.9917</span> (Passes regulatory threshold)</li>
+            <li><b>Statistical Parity Difference:</b> Improved from <span class="mono">-0.0778</span> to <span class="mono text-emerald-400">-0.0039</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide flex-col justify-center px-12 max-w-7xl mx-auto w-full gap-6">
+      <h2 class="text-2xl font-bold text-indigo-400">4. Data Privacy &amp; Differential Privacy (&epsilon;-Laplace)</h2>
+      <div class="grid grid-cols-2 gap-6 items-center">
+        <div class="card p-4">
+          <img src="../docs/images/privacy_utility_tradeoff.png" alt="Privacy Tradeoff" class="rounded-lg w-full" />
+        </div>
+        <div class="card p-6 space-y-3 text-sm text-slate-200">
+          <h3 class="text-lg font-bold text-white">Privacy-Preserving Telemetry &amp; PII Protection</h3>
+          <ul class="space-y-2 list-disc pl-4">
+            <li><b>Salted SHA-256 Tokenization:</b> Converts raw applicant names into irreversible tokens (<span class="mono text-sky-300">TOK-8F91A2B4C1E0</span>).</li>
+            <li><b>National ID Redaction:</b> Masks identifiers to <span class="mono text-slate-300">ID-XXXX-3910</span>.</li>
+            <li><b>k-Anonymity Generalization:</b> Buckets exact ages into actuarial bands.</li>
+            <li><b>&epsilon;-Differential Privacy:</b> Injects calibrated Laplace noise <span class="mono">Lap(0, &Delta;f/&epsilon;)</span> into sensitive credit and telematics scores. At <span class="mono text-emerald-400">&epsilon;=2.5</span>, full calibration utility is preserved.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide flex-col justify-center px-12 max-w-7xl mx-auto w-full gap-6">
+      <h2 class="text-2xl font-bold text-rose-400">5. Continuous Model Monitoring &amp; Drift Detection (PSI &amp; KS)</h2>
+      <div class="grid grid-cols-2 gap-6 items-center">
+        <div class="card p-4">
+          <img src="../docs/images/drift_monitoring_psi.png" alt="PSI Drift" class="rounded-lg w-full" />
+        </div>
+        <div class="card p-6 space-y-3 text-sm text-slate-200">
+          <h3 class="text-lg font-bold text-white">Quarterly Production Drift Surveillance</h3>
+          <p>Monitors every feature using the <b>Population Stability Index (PSI)</b> and two-sample <b>Kolmogorov-Smirnov (KS)</b> tests:</p>
+          <ul class="space-y-2 list-disc pl-4">
+            <li><b>2026-Q1 &amp; Q2:</b> Max PSI &lt; 0.10 &rarr; <span class="text-emerald-400 font-semibold">HEALTHY</span></li>
+            <li><b>2026-Q3 (Mild Telematics Shift):</b> Max PSI = 0.4182 &rarr; <span class="text-amber-400 font-semibold">WATCH ALERT</span></li>
+            <li><b>2026-Q4 (Severe Weather &amp; Macro Shift):</b> Max PSI = 3.0132 &rarr; <span class="text-rose-400 font-semibold">CRITICAL: AUTO-RECALIBRATE</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 7: Demonstration Walkthrough -->
+    <div class="slide flex-col justify-center px-12 max-w-7xl mx-auto w-full gap-5">
+      <h2 class="text-2xl font-bold text-amber-400">6. Live Demonstration Walkthrough — 4 Interactive Test Cases</h2>
+      <div class="grid grid-cols-2 gap-6 items-center">
+        <div class="card p-4">
+          <img src="../docs/images/loss_forecasting_pricing.png" alt="Demo Cases" class="rounded-lg w-full" />
+        </div>
+        <div class="grid grid-cols-2 gap-3 text-xs">
+          <div class="card p-4 border-l-4 border-l-emerald-400">
+            <div class="font-bold text-emerald-400">Case 1: Safe Commuter</div>
+            <div class="mt-1 text-slate-300">Telematics 91.5, 0 claims</div>
+            <div class="mt-2 mono text-lg font-bold text-white">$240.00/yr</div>
+            <div class="text-emerald-300 mt-1">TIER 1: PREFERRED PLUS</div>
+          </div>
+          <div class="card p-4 border-l-4 border-l-sky-400">
+            <div class="font-bold text-sky-400">Case 2: Fairness Showcase</div>
+            <div class="mt-1 text-slate-300">Low-Income Zone, Telematics 84</div>
+            <div class="mt-2 mono text-lg font-bold text-white">$671.99/yr</div>
+            <div class="text-sky-300 mt-1">TIER 2: STANDARD RISK</div>
+          </div>
+          <div class="card p-4 border-l-4 border-l-amber-400">
+            <div class="font-bold text-amber-400">Case 3: Night Speeder</div>
+            <div class="mt-1 text-slate-300">0 claims, 46% night, 42% speed</div>
+            <div class="mt-2 mono text-lg font-bold text-white">$8,476.40/yr</div>
+            <div class="text-amber-300 mt-1">TIER 4: HIGH RISK / DECLINE</div>
+          </div>
+          <div class="card p-4 border-l-4 border-l-rose-400">
+            <div class="font-bold text-rose-400">Case 4: High-Risk Decline</div>
+            <div class="mt-1 text-slate-300">3 claims, Telematics 34.5</div>
+            <div class="mt-2 mono text-lg font-bold text-white">$8,350.29/yr</div>
+            <div class="text-rose-300 mt-1">TIER 4: HIGH RISK / DECLINE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 8: How to Run & Present Live -->
+    <div class="slide flex-col justify-center px-12 max-w-7xl mx-auto w-full gap-6">
+      <h2 class="text-2xl font-bold text-sky-400">7. Live Demo Execution &amp; GitHub Repository</h2>
+      <div class="grid grid-cols-2 gap-6">
+        <div class="card p-6 space-y-3">
+          <h3 class="text-lg font-bold text-white">Step-by-Step Live Demonstration Script</h3>
+          <ol class="text-sm text-slate-300 space-y-2 list-decimal pl-5">
+            <li>Run <code class="mono bg-slate-900 px-2 py-0.5 rounded text-sky-300">python app.py</code> and open <code class="mono text-emerald-300">http://127.0.0.1:5000</code>.</li>
+            <li>Click <b>Case 1 (Preferred Safe Driver)</b> to show instant auto-approval and -12.7% telematics discount.</li>
+            <li>Click <b>Case 2 (Fairness Constraint Showcase)</b> and toggle the <i>Fairness Constraint</i> checkbox on/off to show live removal of regional proxy penalty.</li>
+            <li>Click <b>Case 3 (Real-Time Night Speeder)</b> to show how real-time telemetry catches high risk even when prior claims = 0.</li>
+            <li>Click <b>⚡ Stream Live IoT Packet</b> to score a live random connected-vehicle packet in real time.</li>
+          </ol>
+        </div>
+        <div class="card p-6 space-y-3">
+          <h3 class="text-lg font-bold text-emerald-400">GitHub Upload Commands</h3>
+          <pre class="mono text-xs bg-slate-950 p-4 rounded-xl border border-slate-800 text-slate-200 overflow-x-auto">git init
+git add .
+git commit -m "Statement #31: Predictive Underwriting (2026 Update)"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/predictive-underwriting-2026.git
+git push -u origin main</pre>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    function showSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      document.getElementById('slide-indicator').textContent = `Slide ${currentSlide + 1} / ${slides.length}`;
+    }
+    function nextSlide() { showSlide(currentSlide + 1); }
+    function prevSlide() { showSlide(currentSlide - 1); }
+    window.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+  </script>
+</body>
+</html>

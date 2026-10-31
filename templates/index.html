@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statement #31 — Predictive Underwriting & Actuarial AI (2026 Update)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0f19;
+      color: #e2e8f0;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .glass-card {
+      background: rgba(17, 24, 39, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.16);
+      backdrop-filter: blur(12px);
+    }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #0284c7, #4f46e5);
+      color: #ffffff;
+      border-color: #38bdf8;
+      box-shadow: 0 4px 18px rgba(56, 189, 248, 0.28);
+    }
+    input[type="range"] {
+      accent-color: #38bdf8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Header Banner -->
+  <header class="border-b border-slate-800 bg-slate-950/90 sticky top-0 z-50 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-sky-500/20">
+          #31
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg font-bold tracking-tight text-white">Predictive Underwriting & Actuarial Pricing AI</h1>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/40 font-semibold">2026 Regulatory Update</span>
+          </div>
+          <p class="text-xs text-slate-400">Historical + Real-Time IoT Telematics • Calibrated Risk Models • Fairness Constraints • Differential Privacy • PSI Drift Monitoring</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="flex flex-wrap gap-1.5">
+        <button onclick="switchTab('tab-underwrite')" id="btn-tab-underwrite" class="tab-btn active px-3.5 py-2 rounded-lg text-xs font-semibold border border-slate-700 text-slate-300 transition">
+          1. Live Underwriting Demo
+        </button>
+        <button onclick="switchTab('tab-calibration')" id="btn-tab-calibration" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold border border-slate-700 text-slate-300 transition">
+          2. Calibrated Risk & Loss Forecast
+        </button>
+        <button onclick="switchTab('tab-fairness')" id="btn-tab-fairness" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold border border-slate-700 text-slate-300 transition">
+          3. Fairness & Privacy (2026)
+        </button>
+        <button onclick="switchTab('tab-monitoring')" id="btn-tab-monitoring" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold border border-slate-700 text-slate-300 transition">
+          4. Model Drift Monitoring
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-7xl mx-auto w-full px-4 py-6 flex-1 space-y-6">
+
+    <!-- ==================== TAB 1: LIVE UNDERWRITING DEMO ==================== -->
+    <section id="tab-underwrite" class="space-y-6">
+      <!-- Quick Demo Persona Selector Bar -->
+      <div class="glass-card rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <span class="text-xs uppercase tracking-wider text-sky-400 font-bold">Presentation Demonstration Scenarios</span>
+          <p class="text-xs text-slate-400">Click any curated applicant persona below or stream a random live IoT telemetry packet to demonstrate real-time underwriting:</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="loadPersona('safe_commuter')" class="px-3 py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/40 text-emerald-300 text-xs font-semibold transition">
+            Case 1: Preferred Safe Driver
+          </button>
+          <button onclick="loadPersona('fairness_showcase')" class="px-3 py-1.5 rounded-lg bg-sky-500/15 hover:bg-sky-500/25 border border-sky-500/40 text-sky-300 text-xs font-semibold transition">
+            Case 2: Fairness Constraint Showcase
+          </button>
+          <button onclick="loadPersona('realtime_speeder')" class="px-3 py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-amber-300 text-xs font-semibold transition">
+            Case 3: Real-Time Night Speeder
+          </button>
+          <button onclick="loadPersona('high_risk_decline')" class="px-3 py-1.5 rounded-lg bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/40 text-rose-300 text-xs font-semibold transition">
+            Case 4: High-Risk Referral / Decline
+          </button>
+          <button onclick="simulateRandomStream()" class="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md transition">
+            ⚡ Stream Live IoT Packet
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Left Column: Historical + Real-Time Feature Controls (7 cols) -->
+        <div class="lg:col-span-7 space-y-5">
+
+          <!-- Historical & Demographic Profile -->
+          <div class="glass-card rounded-2xl p-5 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div>
+                <h2 class="text-sm font-bold text-white uppercase tracking-wider">A. Historical Underwriting & Policyholder Profile</h2>
+                <p class="text-xs text-slate-400">Actuarial historical record & protected demographic group</p>
+              </div>
+              <span id="active-persona-badge" class="text-xs px-2.5 py-1 rounded bg-slate-800 text-sky-300 mono">Custom / Preset</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label class="text-xs text-slate-400 block mb-1">Applicant Name (Raw PII)</label>
+                <input id="inp-name" type="text" value="Ananya Sharma" onchange="runUnderwriting()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white" />
+              </div>
+              <div>
+                <label class="text-xs text-slate-400 block mb-1">National ID (Raw PII)</label>
+                <input id="inp-natid" type="text" value="ID-7482-3910" onchange="runUnderwriting()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white mono" />
+              </div>
+              <div>
+                <label class="text-xs text-slate-400 block mb-1">Region Tier (Protected Attr)</label>
+                <select id="inp-region" onchange="runUnderwriting()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
+                  <option value="Low-Income Zone">Low-Income Zone</option>
+                  <option value="Middle-Income Zone" selected>Middle-Income Zone</option>
+                  <option value="High-Income Zone">High-Income Zone</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300">Driver Age (Years)</span>
+                  <span id="val-age" class="mono text-sky-400 font-semibold">34</span>
+                </div>
+                <input id="inp-age" type="range" min="18" max="78" step="1" value="34" oninput="syncVal('age', this.value); runUnderwriting()" class="w-full" />
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300">Prior Claims (Last 3 Yrs)</span>
+                  <span id="val-claims" class="mono text-sky-400 font-semibold">0</span>
+                </div>
+                <input id="inp-claims" type="range" min="0" max="5" step="1" value="0" oninput="syncVal('claims', this.value); runUnderwriting()" class="w-full" />
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300">Credit Stability Score</span>
+                  <span id="val-credit" class="mono text-sky-400 font-semibold">765</span>
+                </div>
+                <input id="inp-credit" type="range" min="350" max="850" step="5" value="765" oninput="syncVal('credit', this.value); runUnderwriting()" class="w-full" />
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300">Insured Vehicle Value (USD)</span>
+                  <span id="val-vehval" class="mono text-sky-400 font-semibold">$28,000</span>
+                </div>
+                <input id="inp-vehval" type="range" min="8000" max="110000" step="1000" value="28000" oninput="syncVal('vehval', '$' + Number(this.value).toLocaleString()); runUnderwriting()" class="w-full" />
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300">Annual Mileage (km/yr)</span>
+                  <span id="val-mileage" class="mono text-sky-400 font-semibold">10,500 km</span>
+                </div>
+                <input id="inp-mileage" type="range" min="3000" max="45000" step="500" value="10500" oninput="syncVal('mileage', Number(this.value).toLocaleString() + ' km'); runUnderwriting()" class="w-full" />
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300">Vehicle Safety Rating (1-5★)</span>
+                  <span id="val-safety" class="mono text-sky-400 font-semibold">5 ★</span>
+                </div>
+                <input id="inp-safety" type="range" min="2" max="5" step="1" value="5" oninput="syncVal('safety', this.value + ' ★'); runUnderwriting()" class="w-full" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Real-Time IoT & Telematics Inputs -->
+          <div class="glass-card rounded-2xl p-5 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <div>
+                <h2 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">B. Real-Time IoT Telematics & Contextual Stream</h2>
+                <p class="text-xs text-slate-400">Live connected-vehicle behavior, GPS speed profile & route weather hazard</p>
+              </div>
+              <span class="text-xs px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 mono">LIVE TELEMETRY</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300">Real-Time Telematics Score (0-100)</span>
+                  <span id="val-telem" class="mono text-emerald-400 font-semibold">91.5</span>
+                </div>
+                <input id="inp-telem" type="range" min="20" max="99" step="0.5" value="91.5" oninput="syncVal('telem', this.value); runUnderwriting()" class="w-full" />
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300">Harsh Braking Events / 100km</span>
+                  <span id="val-braking" class="mono text-emerald-400 font-semibold">0.8</span>
+                </div>
+                <input id="inp-braking" type="range" min="0.1" max="15.0" step="0.2" value="0.8" oninput="syncVal('braking', this.value); runUnderwriting()" class="w-full" />
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300">Night-Time Driving Ratio</span>
+                  <span id="val-night" class="mono text-emerald-400 font-semibold">6%</span>
+                </div>
+                <input id="inp-night" type="range" min="0.0" max="0.75" step="0.01" value="0.06" oninput="syncVal('night', Math.round(this.value*100) + '%'); runUnderwriting()" class="w-full" />
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300">Overspeeding Ratio (&gt;Limit)</span>
+                  <span id="val-speed" class="mono text-emerald-400 font-semibold">4%</span>
+                </div>
+                <input id="inp-speed" type="range" min="0.0" max="0.70" step="0.01" value="0.04" oninput="syncVal('speed', Math.round(this.value*100) + '%'); runUnderwriting()" class="w-full" />
+              </div>
+
+              <div class="sm:col-span-2">
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300">Real-Time Weather & Route Hazard Index (0 = Clear, 1 = Severe Storm/Congestion)</span>
+                  <span id="val-hazard" class="mono text-emerald-400 font-semibold">0.22</span>
+                </div>
+                <input id="inp-hazard" type="range" min="0.05" max="0.95" step="0.01" value="0.22" oninput="syncVal('hazard', this.value); runUnderwriting()" class="w-full" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 2026 Governance Controls: Fairness & Differential Privacy -->
+          <div class="glass-card rounded-2xl p-5 space-y-3 border border-indigo-500/30">
+            <h2 class="text-sm font-bold text-indigo-300 uppercase tracking-wider">C. 2026 Governance Guardrails (Fairness & Privacy Controls)</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+              <label class="flex items-center gap-2.5 cursor-pointer bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+                <input id="chk-fairness" type="checkbox" checked onchange="runUnderwriting()" class="w-4 h-4 accent-sky-500 rounded" />
+                <div>
+                  <div class="text-xs font-semibold text-white">Fairness Constraint</div>
+                  <div class="text-[11px] text-slate-400">Enforce 80% Disparate Impact Rule</div>
+                </div>
+              </label>
+
+              <label class="flex items-center gap-2.5 cursor-pointer bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+                <input id="chk-privacy" type="checkbox" checked onchange="runUnderwriting()" class="w-4 h-4 accent-sky-500 rounded" />
+                <div>
+                  <div class="text-xs font-semibold text-white">Differential Privacy</div>
+                  <div class="text-[11px] text-slate-400">Laplace Noise + SHA-256 PII Token</div>
+                </div>
+              </label>
+
+              <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-slate-300">Privacy Budget (&epsilon;)</span>
+                  <span id="val-eps" class="mono text-indigo-400 font-bold">2.5</span>
+                </div>
+                <input id="inp-eps" type="range" min="0.5" max="8.0" step="0.5" value="2.5" oninput="syncVal('eps', this.value); runUnderwriting()" class="w-full" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Real-Time Underwriting Decision, Pricing & Calibration Output (5 cols) -->
+        <div class="lg:col-span-5 space-y-5">
+
+          <!-- Underwriting Tier & Quote Hero Card -->
+          <div class="glass-card rounded-2xl p-6 space-y-4 border-t-4 border-t-sky-500" id="decision-card">
+            <div class="flex items-center justify-between">
+              <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Automated Underwriting Decision</span>
+              <span id="out-tier-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                TIER 1: PREFERRED PLUS
+              </span>
+            </div>
+
+            <p id="out-action-text" class="text-sm font-semibold text-white">
+              INSTANT AUTO-APPROVE (Preferred Discount Applied)
+            </p>
+
+            <div class="grid grid-cols-2 gap-4 pt-2 border-t border-slate-800">
+              <div class="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800">
+                <span class="text-xs text-slate-400 block">Annual Technical Premium</span>
+                <span id="out-annual-prem" class="text-2xl font-extrabold text-sky-400 mono">$684.50</span>
+                <span class="text-[11px] text-slate-500 block mt-0.5">Includes Solvency & Telematics Adj.</span>
+              </div>
+              <div class="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800">
+                <span class="text-xs text-slate-400 block">Monthly Installment</span>
+                <span id="out-monthly-prem" class="text-2xl font-extrabold text-emerald-400 mono">$57.04</span>
+                <span id="out-telem-mod" class="text-[11px] text-emerald-400 block mt-0.5">-12.7% Telematics Discount</span>
+              </div>
+            </div>
+
+            <!-- Calibrated Risk Probability Comparison Bar -->
+            <div class="space-y-2 pt-2">
+              <div class="text-xs font-semibold text-slate-300 flex justify-between">
+                <span>Model Calibration Pipeline (Annual Claim Probability)</span>
+                <span id="out-final-prob" class="mono text-sky-300 font-bold">8.4%</span>
+              </div>
+              <div class="grid grid-cols-3 gap-2 text-center">
+                <div class="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                  <div class="text-[10px] text-slate-400">Uncalibrated RF</div>
+                  <div id="out-uncal-prob" class="text-sm font-bold text-rose-400 mono">14.2%</div>
+                </div>
+                <div class="bg-slate-900/80 p-2 rounded-lg border border-slate-800">
+                  <div class="text-[10px] text-slate-400">Isotonic Calibrated</div>
+                  <div id="out-iso-prob" class="text-sm font-bold text-amber-300 mono">8.8%</div>
+                </div>
+                <div class="bg-slate-900/80 p-2 rounded-lg border border-sky-500/40">
+                  <div class="text-[10px] text-sky-300">Fairness + Calibrated</div>
+                  <div id="out-fair-prob" class="text-sm font-bold text-emerald-400 mono">8.4%</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pure Premium & Loss Forecast Breakdown -->
+            <div class="bg-slate-900/70 rounded-xl p-3.5 space-y-2 border border-slate-800 text-xs">
+              <div class="font-semibold text-slate-300 border-b border-slate-800 pb-1.5">Actuarial Loss Forecast & Pricing Decomposition</div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Expected Severity if Claim Occurs E[L|C]:</span>
+                <span id="out-severity" class="mono text-white font-medium">$3,420.00</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Pure Premium (Expected Annual Loss = P &times; E[L|C]):</span>
+                <span id="out-pure-prem" class="mono text-sky-300 font-semibold">$287.28</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Real-Time Telematics Dynamic Adjustment:</span>
+                <span id="out-telem-usd" class="mono text-emerald-400">-$36.42</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Admin + Solvency II Risk Margin Loading:</span>
+                <span id="out-loading-usd" class="mono text-slate-300">$233.64</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Explainable Risk Attribution Card -->
+          <div class="glass-card rounded-2xl p-5 space-y-3">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300">Explainable Risk Factor Attribution (Local Drivers)</h3>
+            <div id="drivers-container" class="space-y-2 text-xs"></div>
+          </div>
+
+          <!-- Live Data Privacy Inspector Card -->
+          <div class="glass-card rounded-2xl p-4 space-y-2 border border-slate-800">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-300">2026 Privacy Sanitization Inspector</span>
+              <span id="out-dp-badge" class="text-[11px] px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 mono">&epsilon;-DP Active</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs mono bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+              <div>
+                <span class="text-slate-500 block text-[10px]">Pseudonym Token</span>
+                <span id="out-token" class="text-sky-300">TOK-8F91A2B4C1E0</span>
+              </div>
+              <div>
+                <span class="text-slate-500 block text-[10px]">Masked National ID</span>
+                <span id="out-masked-id" class="text-slate-300">ID-XXXX-3910</span>
+              </div>
+              <div>
+                <span class="text-slate-500 block text-[10px]">Credit Score (Raw &rarr; DP)</span>
+                <span id="out-dp-credit" class="text-emerald-300">765 &rarr; 759</span>
+              </div>
+              <div>
+                <span class="text-slate-500 block text-[10px]">Telematics (Raw &rarr; DP)</span>
+                <span id="out-dp-telem" class="text-emerald-300">91.5 &rarr; 91.2</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: CALIBRATED RISK & LOSS FORECASTING ==================== -->
+    <section id="tab-calibration" class="hidden space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="glass-card rounded-2xl p-4">
+          <div class="text-xs text-slate-400">Uncalibrated Brier Score</div>
+          <div id="kpi-brier-uncal" class="text-2xl font-extrabold text-rose-400 mono mt-1">--</div>
+          <div class="text-[11px] text-slate-500 mt-1">Over-estimates risk probabilities</div>
+        </div>
+        <div class="glass-card rounded-2xl p-4">
+          <div class="text-xs text-slate-400">Isotonic Calibrated Brier Score</div>
+          <div id="kpi-brier-iso" class="text-2xl font-extrabold text-emerald-400 mono mt-1">--</div>
+          <div class="text-[11px] text-emerald-400/80 mt-1">Optimal probability accuracy</div>
+        </div>
+        <div class="glass-card rounded-2xl p-4">
+          <div class="text-xs text-slate-400">Expected Calibration Error (ECE)</div>
+          <div id="kpi-ece-iso" class="text-2xl font-extrabold text-sky-400 mono mt-1">--</div>
+          <div id="kpi-ece-uncal-sub" class="text-[11px] text-slate-400 mt-1">Reduced from --</div>
+        </div>
+        <div class="glass-card rounded-2xl p-4">
+          <div class="text-xs text-slate-400">Portfolio Loss Forecast Accuracy</div>
+          <div id="kpi-loss-acc" class="text-2xl font-extrabold text-indigo-400 mono mt-1">--</div>
+          <div id="kpi-loss-totals" class="text-[11px] text-slate-400 mt-1">Pred vs Actual Portfolio Loss</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="glass-card rounded-2xl p-5">
+          <h3 class="text-sm font-bold text-white mb-1">Reliability Diagram (Calibration Curve)</h3>
+          <p class="text-xs text-slate-400 mb-4">Compares Uncalibrated Ensemble vs. Platt Scaling vs. Isotonic Regression against the Ideal 45&deg; Actuarial Diagonal</p>
+          <div class="h-72">
+            <canvas id="chart-calibration"></canvas>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5">
+          <h3 class="text-sm font-bold text-white mb-1">Global Risk Feature Importance (Historical + Real-Time)</h3>
+          <p class="text-xs text-slate-400 mb-4">Relative predictive contribution across connected telematics streams and historical policy data</p>
+          <div class="h-72">
+            <canvas id="chart-importance"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: FAIRNESS & PRIVACY AUDIT (2026 UPDATE) ==================== -->
+    <section id="tab-fairness" class="hidden space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="glass-card rounded-2xl p-4">
+          <div class="text-xs text-slate-400">Disparate Impact Ratio (Before Mitigation)</div>
+          <div id="kpi-dir-before" class="text-2xl font-extrabold text-rose-400 mono mt-1">--</div>
+          <div class="text-[11px] text-rose-300 mt-1">Fails 0.80 Regulatory Four-Fifths Rule</div>
+        </div>
+        <div class="glass-card rounded-2xl p-4">
+          <div class="text-xs text-slate-400">Disparate Impact Ratio (After 2026 Constraint)</div>
+          <div id="kpi-dir-after" class="text-2xl font-extrabold text-emerald-400 mono mt-1">--</div>
+          <div class="text-[11px] text-emerald-300 mt-1">Passes &ge; 0.80 EEOC / Actuarial Fairness Threshold</div>
+        </div>
+        <div class="glass-card rounded-2xl p-4">
+          <div class="text-xs text-slate-400">Statistical Parity Difference (SPD)</div>
+          <div id="kpi-spd-after" class="text-2xl font-extrabold text-sky-400 mono mt-1">--</div>
+          <div id="kpi-spd-before-sub" class="text-[11px] text-slate-400 mt-1">Improved from --</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="glass-card rounded-2xl p-5">
+          <h3 class="text-sm font-bold text-white mb-1">Group Approval Rates Before vs. After Fairness Constraint</h3>
+          <p class="text-xs text-slate-400 mb-4">Eliminating socioeconomic region proxy penalty while preserving real-time behavioral differentiation</p>
+          <div class="h-72">
+            <canvas id="chart-fairness"></canvas>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5">
+          <h3 class="text-sm font-bold text-white mb-1">Differential Privacy Utility-Privacy Tradeoff (&epsilon; Curve)</h3>
+          <p class="text-xs text-slate-400 mb-4">Impact of Laplace noise budget &epsilon; on ROC-AUC and Brier Calibration Error</p>
+          <div class="h-72">
+            <canvas id="chart-privacy"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: MODEL DRIFT MONITORING (2026 UPDATE) ==================== -->
+    <section id="tab-monitoring" class="hidden space-y-6">
+      <div class="glass-card rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h3 class="text-sm font-bold text-white">Production Stream Drift Simulator (PSI &amp; KS-Test)</h3>
+          <p class="text-xs text-slate-400">Simulate production data shifts to test automated drift alerts and recalibration triggers:</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="loadDriftScenario('q1_normal')" class="px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-xs font-semibold">
+            2026-Q2 Normal Stream (Stable)
+          </button>
+          <button onclick="loadDriftScenario('q2_mild_drift')" class="px-3 py-1.5 rounded-lg bg-amber-500/15 border border-amber-500/40 text-amber-300 text-xs font-semibold">
+            2026-Q3 Mild Telematics Shift (Warning)
+          </button>
+          <button onclick="loadDriftScenario('q3_severe_drift')" class="px-3 py-1.5 rounded-lg bg-rose-500/15 border border-rose-500/40 text-rose-300 text-xs font-semibold">
+            2026-Q4 Severe Weather &amp; Macro Shift (Critical)
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="glass-card rounded-2xl p-5">
+          <h3 class="text-sm font-bold text-white mb-1">Feature Population Stability Index (PSI)</h3>
+          <p class="text-xs text-slate-400 mb-4">Thresholds: PSI &lt; 0.10 (Stable) | 0.10–0.25 (Moderate Warning) | &ge; 0.25 (Critical Drift — Retrain)</p>
+          <div class="h-72">
+            <canvas id="chart-psi"></canvas>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-5 overflow-x-auto">
+          <h3 class="text-sm font-bold text-white mb-1">Quarterly Calibration &amp; Loss Ratio Monitoring Timeline</h3>
+          <p class="text-xs text-slate-400 mb-4">Tracking Brier Score, ECE, PSI, and Actual-to-Expected (A/E) Loss Ratio across 2026 quarters</p>
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400">
+                <th class="py-2 px-2">Window</th>
+                <th class="py-2 px-2">Max PSI</th>
+                <th class="py-2 px-2">ECE</th>
+                <th class="py-2 px-2">A/E Ratio</th>
+                <th class="py-2 px-2">Governance Status</th>
+              </tr>
+            </thead>
+            <tbody id="table-quarterly-body" class="divide-y divide-slate-800/70 mono"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    let dashboardData = null;
+    let chartCalibration = null;
+    let chartImportance = null;
+    let chartFairness = null;
+    let chartPrivacy = null;
+    let chartPsi = null;
+
+    function switchTab(tabId) {
+      ['tab-underwrite', 'tab-calibration', 'tab-fairness', 'tab-monitoring'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+        document.getElementById('btn-' + id).classList.remove('active');
+      });
+      document.getElementById(tabId).classList.remove('hidden');
+      document.getElementById('btn-' + tabId).classList.add('active');
+    }
+
+    function syncVal(key, val) {
+      document.getElementById('val-' + key).textContent = val;
+    }
+
+    async function initDashboard() {
+      const res = await fetch('/api/dashboard_summary');
+      dashboardData = await res.json();
+      populateSummaryCharts();
+      runUnderwriting();
+    }
+
+    function loadPersona(key) {
+      if (!dashboardData || !dashboardData.demo_personas[key]) return;
+      const p = dashboardData.demo_personas[key];
+      document.getElementById('active-persona-badge').textContent = p.label;
+      document.getElementById('inp-name').value = p.applicant_name;
+      document.getElementById('inp-natid').value = p.national_id;
+      document.getElementById('inp-region').value = p.region_income_tier;
+
+      document.getElementById('inp-age').value = p.driver_age;
+      syncVal('age', p.driver_age);
+
+      document.getElementById('inp-claims').value = p.prior_claims_3yr;
+      syncVal('claims', p.prior_claims_3yr);
+
+      document.getElementById('inp-credit').value = p.credit_stability_score;
+      syncVal('credit', p.credit_stability_score);
+
+      document.getElementById('inp-vehval').value = p.vehicle_value_usd;
+      syncVal('vehval', '$' + Number(p.vehicle_value_usd).toLocaleString());
+
+      document.getElementById('inp-mileage').value = p.annual_mileage_km;
+      syncVal('mileage', Number(p.annual_mileage_km).toLocaleString() + ' km');
+
+      document.getElementById('inp-safety').value = p.vehicle_safety_rating;
+      syncVal('safety', p.vehicle_safety_rating + ' ★');
+
+      document.getElementById('inp-telem').value = p.rt_telematics_score;
+      syncVal('telem', p.rt_telematics_score);
+
+      document.getElementById('inp-braking').value = p.rt_harsh_braking_per_100km;
+      syncVal('braking', p.rt_harsh_braking_per_100km);
+
+      document.getElementById('inp-night').value = p.rt_night_driving_ratio;
+      syncVal('night', Math.round(p.rt_night_driving_ratio * 100) + '%');
+
+      document.getElementById('inp-speed').value = p.rt_overspeed_ratio;
+      syncVal('speed', Math.round(p.rt_overspeed_ratio * 100) + '%');
+
+      document.getElementById('inp-hazard').value = p.rt_weather_route_hazard_idx;
+      syncVal('hazard', p.rt_weather_route_hazard_idx);
+
+      runUnderwriting();
+    }
+
+    async function simulateRandomStream() {
+      const res = await fetch('/api/simulate_stream');
+      const data = await res.json();
+      const p = data.applicant;
+      document.getElementById('active-persona-badge').textContent = 'Live IoT Stream: ' + p.policy_id;
+      document.getElementById('inp-name').value = p.applicant_name;
+      document.getElementById('inp-natid').value = p.national_id;
+      document.getElementById('inp-region').value = p.region_income_tier;
+      document.getElementById('inp-age').value = p.driver_age;
+      syncVal('age', p.driver_age);
+      document.getElementById('inp-claims').value = p.prior_claims_3yr;
+      syncVal('claims', p.prior_claims_3yr);
+      document.getElementById('inp-credit').value = p.credit_stability_score;
+      syncVal('credit', p.credit_stability_score);
+      document.getElementById('inp-vehval').value = p.vehicle_value_usd;
+      syncVal('vehval', '$' + Number(p.vehicle_value_usd).toLocaleString());
+      document.getElementById('inp-mileage').value = p.annual_mileage_km;
+      syncVal('mileage', Number(p.annual_mileage_km).toLocaleString() + ' km');
+      document.getElementById('inp-safety').value = p.vehicle_safety_rating;
+      syncVal('safety', p.vehicle_safety_rating + ' ★');
+      document.getElementById('inp-telem').value = p.rt_telematics_score;
+      syncVal('telem', p.rt_telematics_score);
+      document.getElementById('inp-braking').value = p.rt_harsh_braking_per_100km;
+      syncVal('braking', p.rt_harsh_braking_per_100km);
+      document.getElementById('inp-night').value = p.rt_night_driving_ratio;
+      syncVal('night', Math.round(p.rt_night_driving_ratio * 100) + '%');
+      document.getElementById('inp-speed').value = p.rt_overspeed_ratio;
+      syncVal('speed', Math.round(p.rt_overspeed_ratio * 100) + '%');
+      document.getElementById('inp-hazard').value = p.rt_weather_route_hazard_idx;
+      syncVal('hazard', p.rt_weather_route_hazard_idx);
+      runUnderwriting();
+    }
+
+    async function runUnderwriting() {
+      const payload = {
+        applicant_name: document.getElementById('inp-name').value,
+        national_id: document.getElementById('inp-natid').value,
+        region_income_tier: document.getElementById('inp-region').value,
+        driver_age: Number(document.getElementById('inp-age').value),
+        years_licensed: Math.max(1, Number(document.getElementById('inp-age').value) - 19),
+        prior_claims_3yr: Number(document.getElementById('inp-claims').value),
+        credit_stability_score: Number(document.getElementById('inp-credit').value),
+        vehicle_value_usd: Number(document.getElementById('inp-vehval').value),
+        vehicle_safety_rating: Number(document.getElementById('inp-safety').value),
+        annual_mileage_km: Number(document.getElementById('inp-mileage').value),
+        policy_tenure_years: 4.0,
+        rt_telematics_score: Number(document.getElementById('inp-telem').value),
+        rt_harsh_braking_per_100km: Number(document.getElementById('inp-braking').value),
+        rt_night_driving_ratio: Number(document.getElementById('inp-night').value),
+        rt_overspeed_ratio: Number(document.getElementById('inp-speed').value),
+        rt_weather_route_hazard_idx: Number(document.getElementById('inp-hazard').value),
+        enable_fairness: document.getElementById('chk-fairness').checked,
+        enable_privacy: document.getElementById('chk-privacy').checked,
+        privacy_epsilon: Number(document.getElementById('inp-eps').value),
+      };
+
+      const res = await fetch('/api/underwrite', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      const r = data.result;
+
+      // Update Hero Pricing & Decision
+      document.getElementById('out-tier-badge').textContent = r.decision.tier;
+      document.getElementById('out-action-text').textContent = r.decision.action;
+
+      const colorMap = {
+        emerald: 'px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40',
+        blue: 'px-3 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-500/40',
+        amber: 'px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40',
+        rose: 'px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40',
+      };
+      document.getElementById('out-tier-badge').className = colorMap[r.decision.badge_color] || colorMap.blue;
+
+      document.getElementById('out-annual-prem').textContent = '$' + r.pricing.annual_technical_premium_usd.toLocaleString(undefined, {minimumFractionDigits: 2});
+      document.getElementById('out-monthly-prem').textContent = '$' + r.pricing.monthly_premium_usd.toLocaleString(undefined, {minimumFractionDigits: 2});
+
+      const modPct = r.pricing.telematics_modifier_pct;
+      const modEl = document.getElementById('out-telem-mod');
+      modEl.textContent = (modPct <= 0 ? modPct + '% Telematics Discount' : '+' + modPct + '% Telematics Surcharge');
+      modEl.className = modPct <= 0 ? 'text-[11px] text-emerald-400 block mt-0.5' : 'text-[11px] text-rose-400 block mt-0.5';
+
+      document.getElementById('out-final-prob').textContent = (r.probabilities.final_underwriting_prob * 100).toFixed(1) + '%';
+      document.getElementById('out-uncal-prob').textContent = (r.probabilities.uncalibrated_prob * 100).toFixed(1) + '%';
+      document.getElementById('out-iso-prob').textContent = (r.probabilities.isotonic_calibrated_prob * 100).toFixed(1) + '%';
+      document.getElementById('out-fair-prob').textContent = (r.probabilities.final_underwriting_prob * 100).toFixed(1) + '%';
+
+      document.getElementById('out-severity').textContent = '$' + r.pricing.expected_claim_severity_usd.toLocaleString();
+      document.getElementById('out-pure-prem').textContent = '$' + r.pricing.pure_premium_expected_loss_usd.toLocaleString();
+      document.getElementById('out-telem-usd').textContent = (r.pricing.telematics_adjustment_usd <= 0 ? '-$' : '+$') + Math.abs(r.pricing.telematics_adjustment_usd).toFixed(2);
+      document.getElementById('out-loading-usd').textContent = '$' + (r.pricing.fixed_admin_expense_usd + r.pricing.solvency_and_expense_loading_usd).toFixed(2);
+
+      // Privacy Audit
+      document.getElementById('out-dp-badge').textContent = r.privacy_audit.enabled ? `ε=${r.privacy_audit.epsilon} DP Active` : 'DP Disabled';
+      document.getElementById('out-token').textContent = r.privacy_audit.applicant_token;
+      document.getElementById('out-masked-id').textContent = r.privacy_audit.masked_national_id;
+      document.getElementById('out-dp-credit').textContent = `${r.privacy_audit.raw_credit_score} → ${r.privacy_audit.dp_credit_score}`;
+      document.getElementById('out-dp-telem').textContent = `${r.privacy_audit.raw_telematics_score} → ${r.privacy_audit.dp_telematics_score}`;
+
+      // Explainable Drivers
+      const container = document.getElementById('drivers-container');
+      container.innerHTML = '';
+      r.explainable_drivers.forEach(d => {
+        const isRisk = d.impact_pct > 0;
+        const badgeCls = isRisk ? 'text-rose-400 bg-rose-500/10 border-rose-500/30' : 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30';
+        const sign = d.impact_pct > 0 ? '+' : '';
+        container.innerHTML += `
+          <div class="flex items-center justify-between bg-slate-900/75 px-3 py-2 rounded-lg border border-slate-800">
+            <div>
+              <span class="font-medium text-slate-200">${d.factor}</span>
+              <span class="text-[10px] text-slate-400 ml-1.5">(${d.category}: ${d.value})</span>
+            </div>
+            <span class="mono text-xs px-2 py-0.5 rounded border ${badgeCls}">${sign}${d.impact_pct}%</span>
+          </div>
+        `;
+      });
+    }
+
+    function populateSummaryCharts() {
+      const ts = dashboardData.training_summary;
+
+      // KPIs Tab 2
+      document.getElementById('kpi-brier-uncal').textContent = ts.calibration_comparison.uncalibrated.brier_score;
+      document.getElementById('kpi-brier-iso').textContent = ts.calibration_comparison.isotonic_calibrated.brier_score;
+      document.getElementById('kpi-ece-iso').textContent = ts.calibration_comparison.isotonic_calibrated.ece;
+      document.getElementById('kpi-ece-uncal-sub').textContent = 'Reduced from ' + ts.calibration_comparison.uncalibrated.ece + ' (Uncalibrated)';
+      document.getElementById('kpi-loss-acc').textContent = ts.loss_forecasting.loss_forecast_accuracy_pct + '%';
+      document.getElementById('kpi-loss-totals').textContent =
+        '$' + Math.round(ts.loss_forecasting.portfolio_expected_loss_usd).toLocaleString() +
+        ' vs $' + Math.round(ts.loss_forecasting.portfolio_actual_loss_usd).toLocaleString();
+
+      // Calibration Curve Chart
+      const rc = ts.reliability_curves;
+      const ctxCal = document.getElementById('chart-calibration').getContext('2d');
+      chartCalibration = new Chart(ctxCal, {
+        type: 'line',
+        data: {
+          datasets: [
+            {
+              label: 'Perfect Calibration (45° Diagonal)',
+              data: [{x: 0, y: 0}, {x: 0.85, y: 0.85}],
+              borderColor: '#64748b',
+              borderDash: [5, 5],
+              pointRadius: 0,
+            },
+            {
+              label: 'Uncalibrated Ensemble',
+              data: rc.uncalibrated.mean_predicted.map((x, i) => ({x, y: rc.uncalibrated.fraction_positives[i]})),
+              borderColor: '#fb7185',
+              backgroundColor: '#fb7185',
+              tension: 0.25,
+            },
+            {
+              label: 'Platt Scaling (Sigmoid)',
+              data: rc.platt_sigmoid.mean_predicted.map((x, i) => ({x, y: rc.platt_sigmoid.fraction_positives[i]})),
+              borderColor: '#fbbf24',
+              backgroundColor: '#fbbf24',
+              tension: 0.25,
+            },
+            {
+              label: 'Isotonic Calibrated (2026 Model)',
+              data: rc.isotonic_calibrated.mean_predicted.map((x, i) => ({x, y: rc.isotonic_calibrated.fraction_positives[i]})),
+              borderColor: '#34d399',
+              backgroundColor: '#34d399',
+              borderWidth: 3,
+              tension: 0.25,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { type: 'linear', min: 0, max: 0.85, title: { display: true, text: 'Mean Predicted Probability', color: '#94a3b8' }, grid: { color: '#1e293b' } },
+            y: { min: 0, max: 0.85, title: { display: true, text: 'Observed Empirical Claim Frequency', color: '#94a3b8' }, grid: { color: '#1e293b' } }
+          },
+          plugins: { legend: { labels: { color: '#e2e8f0', font: { size: 11 } } } }
+        }
+      });
+
+      // Feature Importance Chart
+      const fi = ts.feature_importances.slice(0, 9);
+      const ctxImp = document.getElementById('chart-importance').getContext('2d');
+      chartImportance = new Chart(ctxImp, {
+        type: 'bar',
+        data: {
+          labels: fi.map(d => d.feature),
+          datasets: [{
+            label: 'Relative Importance (%)',
+            data: fi.map(d => d.importance),
+            backgroundColor: '#38bdf8',
+            borderRadius: 5,
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8' } },
+            y: { grid: { display: false }, ticks: { color: '#e2e8f0', font: { size: 11 } } }
+          },
+          plugins: { legend: { display: false } }
+        }
+      });
+
+      // Fairness Tab KPIs & Chart
+      const fb = ts.fairness_audit.before_mitigation;
+      const fa = ts.fairness_audit.after_mitigation;
+      document.getElementById('kpi-dir-before').textContent = fb.disparate_impact_ratio;
+      document.getElementById('kpi-dir-after').textContent = fa.disparate_impact_ratio;
+      document.getElementById('kpi-spd-after').textContent = fa.statistical_parity_diff;
+      document.getElementById('kpi-spd-before-sub').textContent = 'Improved from ' + fb.statistical_parity_diff;
+
+      const groups = ['Low-Income Zone', 'Middle-Income Zone', 'High-Income Zone'];
+      const ctxFair = document.getElementById('chart-fairness').getContext('2d');
+      chartFairness = new Chart(ctxFair, {
+        type: 'bar',
+        data: {
+          labels: groups,
+          datasets: [
+            {
+              label: 'Before Mitigation (Approval Rate %)',
+              data: groups.map(g => (fb.group_breakdown[g].approval_rate * 100).toFixed(1)),
+              backgroundColor: '#fb7185',
+              borderRadius: 5,
+            },
+            {
+              label: 'After 2026 Fairness Constraint (Approval Rate %)',
+              data: groups.map(g => (fa.group_breakdown[g].approval_rate * 100).toFixed(1)),
+              backgroundColor: '#34d399',
+              borderRadius: 5,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { beginAtZero: true, max: 100, title: { display: true, text: 'Preferred/Standard Approval Rate (%)', color: '#94a3b8' }, grid: { color: '#1e293b' } },
+            x: { ticks: { color: '#e2e8f0' } }
+          },
+          plugins: { legend: { labels: { color: '#e2e8f0' } } }
+        }
+      });
+
+      // Privacy Curve Chart
+      const puc = dashboardData.privacy_utility_curve;
+      const ctxPriv = document.getElementById('chart-privacy').getContext('2d');
+      chartPrivacy = new Chart(ctxPriv, {
+        type: 'line',
+        data: {
+          labels: puc.map(d => 'ε=' + d.epsilon),
+          datasets: [
+            {
+              label: 'ROC-AUC (Utility)',
+              data: puc.map(d => d.roc_auc),
+              borderColor: '#38bdf8',
+              backgroundColor: '#38bdf8',
+              yAxisID: 'y',
+            },
+            {
+              label: 'Brier Score (Lower is Better)',
+              data: puc.map(d => d.brier_score),
+              borderColor: '#a78bfa',
+              backgroundColor: '#a78bfa',
+              yAxisID: 'y1',
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: { type: 'linear', position: 'left', title: { display: true, text: 'ROC-AUC', color: '#38bdf8' }, grid: { color: '#1e293b' } },
+            y1: { type: 'linear', position: 'right', title: { display: true, text: 'Brier Score', color: '#a78bfa' }, grid: { display: false } }
+          },
+          plugins: { legend: { labels: { color: '#e2e8f0' } } }
+        }
+      });
+
+      // Monitoring Quarterly Table & Initial PSI Chart
+      const qBody = document.getElementById('table-quarterly-body');
+      qBody.innerHTML = '';
+      dashboardData.quarterly_monitoring.forEach(q => {
+        const badge = q.max_feature_psi >= 0.25
+          ? '<span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300">CRITICAL: RETRAIN</span>'
+          : q.max_feature_psi >= 0.10
+          ? '<span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">WARNING: DRIFT</span>'
+          : '<span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">HEALTHY</span>';
+        qBody.innerHTML += `
+          <tr>
+            <td class="py-2.5 px-2 text-slate-200">${q.period}</td>
+            <td class="py-2.5 px-2 text-sky-300">${q.max_feature_psi}</td>
+            <td class="py-2.5 px-2 text-slate-300">${q.ece}</td>
+            <td class="py-2.5 px-2 text-slate-300">${q.actual_to_expected_ratio}x</td>
+            <td class="py-2.5 px-2">${badge}</td>
+          </tr>
+        `;
+      });
+
+      renderPsiChart(dashboardData.feature_drift_q3);
+    }
+
+    function renderPsiChart(driftList) {
+      const top = driftList.slice(0, 8);
+      const colors = top.map(d => d.psi >= 0.25 ? '#fb7185' : d.psi >= 0.10 ? '#fbbf24' : '#34d399');
+      const ctxPsi = document.getElementById('chart-psi').getContext('2d');
+      if (chartPsi) chartPsi.destroy();
+      chartPsi = new Chart(ctxPsi, {
+        type: 'bar',
+        data: {
+          labels: top.map(d => d.feature),
+          datasets: [{
+            label: 'Population Stability Index (PSI)',
+            data: top.map(d => d.psi),
+            backgroundColor: colors,
+            borderRadius: 5,
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: { grid: { color: '#1e293b' }, title: { display: true, text: 'PSI Score (>=0.25 Critical Drift)', color: '#94a3b8' } },
+            y: { ticks: { color: '#e2e8f0', font: { size: 11 } } }
+          },
+          plugins: { legend: { display: false } }
+        }
+      });
+    }
+
+    async function loadDriftScenario(scenario) {
+      const res = await fetch('/api/drift_scenario/' + scenario);
+      const data = await res.json();
+      renderPsiChart(data.feature_drift);
+    }
+
+    window.addEventListener('DOMContentLoaded', initDashboard);
+  </script>
+</body>
+</html>

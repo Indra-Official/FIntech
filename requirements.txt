@@ -1,0 +1,9 @@
+Flask>=3.0.0
+numpy>=2.0.0
+pandas>=2.2.0
+scikit-learn>=1.5.0
+scipy>=1.13.0
+matplotlib>=3.9.0
+plotly>=5.24.0
+python-pptx>=1.0.0
+Pillow>=10.0.0

@@ -1,0 +1,847 @@
+{
+  "training_summary": {
+    "test_size": 981,
+    "calibration_comparison": {
+      "uncalibrated": {
+        "roc_auc": 0.7266,
+        "brier_score": 0.2265,
+        "log_loss": 0.6449,
+        "ece": 0.1348
+      },
+      "platt_sigmoid": {
+        "roc_auc": 0.7297,
+        "brier_score": 0.2071,
+        "log_loss": 0.6023,
+        "ece": 0.0331
+      },
+      "isotonic_calibrated": {
+        "roc_auc": 0.725,
+        "brier_score": 0.2072,
+        "log_loss": 0.6107,
+        "ece": 0.0182
+      }
+    },
+    "reliability_curves": {
+      "uncalibrated": {
+        "mean_predicted": [
+          0.2062,
+          0.3196,
+          0.4391,
+          0.561,
+          0.686,
+          0.8002,
+          0.911
+        ],
+        "fraction_positives": [
+          0.1818,
+          0.1613,
+          0.2451,
+          0.4343,
+          0.5455,
+          0.7333,
+          0.84
+        ]
+      },
+      "platt_sigmoid": {
+        "mean_predicted": [
+          0.1126,
+          0.1997,
+          0.3104,
+          0.4351,
+          0.559,
+          0.6729,
+          0.769
+        ],
+        "fraction_positives": [
+          0.0,
+          0.1779,
+          0.2949,
+          0.407,
+          0.5655,
+          0.7737,
+          0.8824
+        ]
+      },
+      "isotonic_calibrated": {
+        "mean_predicted": [
+          0.0788,
+          0.2031,
+          0.3218,
+          0.4212,
+          0.5693,
+          0.681,
+          0.7971,
+          0.9595
+        ],
+        "fraction_positives": [
+          0.1,
+          0.1967,
+          0.3185,
+          0.4122,
+          0.5726,
+          0.7544,
+          0.7561,
+          0.875
+        ]
+      }
+    },
+    "fairness_audit": {
+      "before_mitigation": {
+        "protected_attribute": "region_income_tier",
+        "privileged_group": "High-Income Zone",
+        "unprivileged_group": "Low-Income Zone",
+        "disparate_impact_ratio": 0.6171,
+        "statistical_parity_diff": -0.0778,
+        "equal_opportunity_diff": -0.0781,
+        "passes_80_percent_rule": false,
+        "group_breakdown": {
+          "High-Income Zone": {
+            "count": 251,
+            "approval_rate": 0.2032,
+            "mean_predicted_risk": 0.5423,
+            "equal_opportunity_rate": 0.2727
+          },
+          "Low-Income Zone": {
+            "count": 311,
+            "approval_rate": 0.1254,
+            "mean_predicted_risk": 0.5814,
+            "equal_opportunity_rate": 0.1946
+          },
+          "Middle-Income Zone": {
+            "count": 419,
+            "approval_rate": 0.1742,
+            "mean_predicted_risk": 0.5586,
+            "equal_opportunity_rate": 0.25
+          }
+        }
+      },
+      "after_mitigation": {
+        "protected_attribute": "region_income_tier",
+        "privileged_group": "High-Income Zone",
+        "unprivileged_group": "Low-Income Zone",
+        "disparate_impact_ratio": 0.9917,
+        "statistical_parity_diff": -0.0039,
+        "equal_opportunity_diff": 0.027,
+        "passes_80_percent_rule": true,
+        "group_breakdown": {
+          "High-Income Zone": {
+            "count": 251,
+            "approval_rate": 0.4701,
+            "mean_predicted_risk": 0.4275,
+            "equal_opportunity_rate": 0.5636
+          },
+          "Low-Income Zone": {
+            "count": 311,
+            "approval_rate": 0.4662,
+            "mean_predicted_risk": 0.4215,
+            "equal_opportunity_rate": 0.5906
+          },
+          "Middle-Income Zone": {
+            "count": 419,
+            "approval_rate": 0.4582,
+            "mean_predicted_risk": 0.4268,
+            "equal_opportunity_rate": 0.5927
+          }
+        }
+      },
+      "gender_audit": {
+        "protected_attribute": "gender",
+        "privileged_group": "Male",
+        "unprivileged_group": "Female",
+        "disparate_impact_ratio": 1.0324,
+        "statistical_parity_diff": 0.0148,
+        "equal_opportunity_diff": 0.0273,
+        "passes_80_percent_rule": true,
+        "group_breakdown": {
+          "Female": {
+            "count": 473,
+            "approval_rate": 0.4715,
+            "mean_predicted_risk": 0.4241,
+            "equal_opportunity_rate": 0.5972
+          },
+          "Male": {
+            "count": 508,
+            "approval_rate": 0.4567,
+            "mean_predicted_risk": 0.4264,
+            "equal_opportunity_rate": 0.5699
+          }
+        }
+      }
+    },
+    "loss_forecasting": {
+      "severity_mae_usd": 1009.02,
+      "severity_r2": 0.514,
+      "portfolio_expected_loss_usd": 1376917.13,
+      "portfolio_actual_loss_usd": 1375447.01,
+      "avg_pure_premium_usd": 1403.59,
+      "loss_forecast_accuracy_pct": 99.89
+    },
+    "feature_importances": [
+      {
+        "feature": "rt_telematics_score",
+        "importance": 16.49
+      },
+      {
+        "feature": "rt_harsh_braking_per_100km",
+        "importance": 11.62
+      },
+      {
+        "feature": "credit_stability_score",
+        "importance": 9.16
+      },
+      {
+        "feature": "rt_overspeed_ratio",
+        "importance": 9.13
+      },
+      {
+        "feature": "rt_night_driving_ratio",
+        "importance": 8.3
+      },
+      {
+        "feature": "rt_weather_route_hazard_idx",
+        "importance": 7.59
+      },
+      {
+        "feature": "annual_mileage_km",
+        "importance": 7.55
+      },
+      {
+        "feature": "policy_tenure_years",
+        "importance": 7.03
+      },
+      {
+        "feature": "vehicle_value_usd",
+        "importance": 6.98
+      },
+      {
+        "feature": "driver_age",
+        "importance": 5.47
+      },
+      {
+        "feature": "years_licensed",
+        "importance": 4.94
+      },
+      {
+        "feature": "prior_claims_3yr",
+        "importance": 3.52
+      },
+      {
+        "feature": "vehicle_safety_rating",
+        "importance": 2.21
+      }
+    ]
+  },
+  "feature_drift_q3": [
+    {
+      "feature": "rt_telematics_score",
+      "psi": 3.5415,
+      "ks_statistic": 0.6556,
+      "ks_p_value": 0.0,
+      "ref_mean": 68.332,
+      "cur_mean": 48.479,
+      "pct_shift": -29.05,
+      "status": "CRITICAL DRIFT",
+      "severity": "high"
+    },
+    {
+      "feature": "rt_harsh_braking_per_100km",
+      "psi": 3.2057,
+      "ks_statistic": 0.5261,
+      "ks_p_value": 0.0,
+      "ref_mean": 2.895,
+      "cur_mean": 6.19,
+      "pct_shift": 113.78,
+      "status": "CRITICAL DRIFT",
+      "severity": "high"
+    },
+    {
+      "feature": "rt_overspeed_ratio",
+      "psi": 2.0065,
+      "ks_statistic": 0.3986,
+      "ks_p_value": 0.0,
+      "ref_mean": 0.186,
+      "cur_mean": 0.348,
+      "pct_shift": 87.29,
+      "status": "CRITICAL DRIFT",
+      "severity": "high"
+    },
+    {
+      "feature": "rt_weather_route_hazard_idx",
+      "psi": 1.5223,
+      "ks_statistic": 0.4355,
+      "ks_p_value": 0.0,
+      "ref_mean": 0.415,
+      "cur_mean": 0.606,
+      "pct_shift": 45.85,
+      "status": "CRITICAL DRIFT",
+      "severity": "high"
+    },
+    {
+      "feature": "credit_stability_score",
+      "psi": 0.3427,
+      "ks_statistic": 0.2421,
+      "ks_p_value": 0.0,
+      "ref_mean": 684.412,
+      "cur_mean": 637.819,
+      "pct_shift": -6.81,
+      "status": "CRITICAL DRIFT",
+      "severity": "high"
+    },
+    {
+      "feature": "driver_age",
+      "psi": 0.0184,
+      "ks_statistic": 0.0483,
+      "ks_p_value": 0.0296,
+      "ref_mean": 39.701,
+      "cur_mean": 38.794,
+      "pct_shift": -2.28,
+      "status": "STABLE",
+      "severity": "low"
+    },
+    {
+      "feature": "years_licensed",
+      "psi": 0.0135,
+      "ks_statistic": 0.0476,
+      "ks_p_value": 0.03361,
+      "ref_mean": 20.305,
+      "cur_mean": 19.356,
+      "pct_shift": -4.68,
+      "status": "STABLE",
+      "severity": "low"
+    },
+    {
+      "feature": "rt_night_driving_ratio",
+      "psi": 0.0131,
+      "ks_statistic": 0.0237,
+      "ks_p_value": 0.68448,
+      "ref_mean": 0.216,
+      "cur_mean": 0.216,
+      "pct_shift": -0.19,
+      "status": "STABLE",
+      "severity": "low"
+    },
+    {
+      "feature": "vehicle_value_usd",
+      "psi": 0.0119,
+      "ks_statistic": 0.0365,
+      "ks_p_value": 0.17964,
+      "ref_mean": 29742.436,
+      "cur_mean": 29202.278,
+      "pct_shift": -1.82,
+      "status": "STABLE",
+      "severity": "low"
+    },
+    {
+      "feature": "annual_mileage_km",
+      "psi": 0.008,
+      "ks_statistic": 0.0312,
+      "ks_p_value": 0.33964,
+      "ref_mean": 14483.957,
+      "cur_mean": 14674.445,
+      "pct_shift": 1.32,
+      "status": "STABLE",
+      "severity": "low"
+    },
+    {
+      "feature": "policy_tenure_years",
+      "psi": 0.0075,
+      "ks_statistic": 0.0182,
+      "ks_p_value": 0.92198,
+      "ref_mean": 3.82,
+      "cur_mean": 3.748,
+      "pct_shift": -1.87,
+      "status": "STABLE",
+      "severity": "low"
+    },
+    {
+      "feature": "vehicle_safety_rating",
+      "psi": 0.0023,
+      "ks_statistic": 0.0147,
+      "ks_p_value": 0.98836,
+      "ref_mean": 3.776,
+      "cur_mean": 3.797,
+      "pct_shift": 0.58,
+      "status": "STABLE",
+      "severity": "low"
+    },
+    {
+      "feature": "prior_claims_3yr",
+      "psi": 0.0001,
+      "ks_statistic": 0.0049,
+      "ks_p_value": 1.0,
+      "ref_mean": 0.39,
+      "cur_mean": 0.384,
+      "pct_shift": -1.5,
+      "status": "STABLE",
+      "severity": "low"
+    }
+  ],
+  "quarterly_monitoring": [
+    {
+      "period": "2026-Q1 (Baseline)",
+      "scenario": "baseline",
+      "prediction_psi": 0.0277,
+      "max_feature_psi": 0.0221,
+      "roc_auc": 0.7007,
+      "brier_score": 0.2149,
+      "ece": 0.0282,
+      "actual_to_expected_ratio": 0.947,
+      "alert_status": "HEALTHY: Within Actuarial Guardrails"
+    },
+    {
+      "period": "2026-Q2 (Normal Stream)",
+      "scenario": "q1_normal",
+      "prediction_psi": 0.0089,
+      "max_feature_psi": 0.054,
+      "roc_auc": 0.7246,
+      "brier_score": 0.2084,
+      "ece": 0.038,
+      "actual_to_expected_ratio": 0.979,
+      "alert_status": "HEALTHY: Within Actuarial Guardrails"
+    },
+    {
+      "period": "2026-Q3 (Mild Telematics Shift)",
+      "scenario": "q2_mild_drift",
+      "prediction_psi": 0.2218,
+      "max_feature_psi": 0.4182,
+      "roc_auc": 0.7166,
+      "brier_score": 0.214,
+      "ece": 0.0384,
+      "actual_to_expected_ratio": 1.03,
+      "alert_status": "ACTION REQUIRED: Auto-Recalibration & Retrain Triggered"
+    },
+    {
+      "period": "2026-Q4 (Severe Macro + Weather Shift)",
+      "scenario": "q3_severe_drift",
+      "prediction_psi": 2.2705,
+      "max_feature_psi": 3.0132,
+      "roc_auc": 0.6786,
+      "brier_score": 0.1664,
+      "ece": 0.0914,
+      "actual_to_expected_ratio": 1.096,
+      "alert_status": "ACTION REQUIRED: Auto-Recalibration & Retrain Triggered"
+    }
+  ],
+  "privacy_utility_curve": [
+    {
+      "epsilon": 0.5,
+      "privacy_level": "Strict (High Noise)",
+      "roc_auc": 0.8498,
+      "brier_score": 0.1662,
+      "ece": 0.0978
+    },
+    {
+      "epsilon": 1.0,
+      "privacy_level": "Strict (High Noise)",
+      "roc_auc": 0.8797,
+      "brier_score": 0.1549,
+      "ece": 0.121
+    },
+    {
+      "epsilon": 2.0,
+      "privacy_level": "Balanced (Recommended)",
+      "roc_auc": 0.903,
+      "brier_score": 0.146,
+      "ece": 0.1334
+    },
+    {
+      "epsilon": 3.0,
+      "privacy_level": "Balanced (Recommended)",
+      "roc_auc": 0.9113,
+      "brier_score": 0.1427,
+      "ece": 0.1471
+    },
+    {
+      "epsilon": 5.0,
+      "privacy_level": "Relaxed (Low Noise)",
+      "roc_auc": 0.9144,
+      "brier_score": 0.1404,
+      "ece": 0.1443
+    },
+    {
+      "epsilon": 10.0,
+      "privacy_level": "Relaxed (Low Noise)",
+      "roc_auc": 0.9205,
+      "brier_score": 0.1373,
+      "ece": 0.1498
+    }
+  ],
+  "demo_persona_results": {
+    "safe_commuter": {
+      "profile": {
+        "label": "Demo Case 1: Safe Telematics Driver (Preferred Tier)",
+        "applicant_name": "Ananya Sharma",
+        "national_id": "ID-7482-3910",
+        "gender": "Female",
+        "region_income_tier": "Middle-Income Zone",
+        "driver_age": 34,
+        "years_licensed": 14,
+        "prior_claims_3yr": 0,
+        "credit_stability_score": 765,
+        "vehicle_value_usd": 28000,
+        "vehicle_safety_rating": 5,
+        "annual_mileage_km": 10500,
+        "policy_tenure_years": 6.5,
+        "rt_telematics_score": 91.5,
+        "rt_harsh_braking_per_100km": 0.8,
+        "rt_night_driving_ratio": 0.06,
+        "rt_overspeed_ratio": 0.04,
+        "rt_weather_route_hazard_idx": 0.22
+      },
+      "evaluation": {
+        "probabilities": {
+          "uncalibrated_prob": 0.1318,
+          "platt_calibrated_prob": 0.1108,
+          "isotonic_calibrated_prob": 0.0,
+          "final_underwriting_prob": 0.02,
+          "fairness_shift_applied": 0.0061
+        },
+        "pricing": {
+          "expected_claim_severity_usd": 2885.16,
+          "pure_premium_expected_loss_usd": 57.7,
+          "telematics_modifier_pct": -14.36,
+          "telematics_adjustment_usd": -8.29,
+          "fixed_admin_expense_usd": 115.0,
+          "solvency_and_expense_loading_usd": 75.58,
+          "annual_technical_premium_usd": 240.0,
+          "monthly_premium_usd": 20.0
+        },
+        "decision": {
+          "tier": "TIER 1: PREFERRED PLUS",
+          "action": "INSTANT AUTO-APPROVE (Preferred Discount Applied)",
+          "badge_color": "emerald"
+        },
+        "privacy_audit": {
+          "enabled": true,
+          "epsilon": 2.5,
+          "applicant_token": "TOK-1741B5AE2F32",
+          "masked_national_id": "ID-XXXX-3910",
+          "raw_credit_score": 765,
+          "dp_credit_score": 747,
+          "raw_telematics_score": 91.5,
+          "dp_telematics_score": 94.1
+        },
+        "explainable_drivers": [
+          {
+            "factor": "Real-Time Telematics Score",
+            "value": "94.1 / 100",
+            "impact_pct": -16.6,
+            "category": "Real-Time Stream"
+          },
+          {
+            "factor": "Harsh Braking Frequency",
+            "value": "0.8 / 100km",
+            "impact_pct": -7.6,
+            "category": "Real-Time Stream"
+          },
+          {
+            "factor": "Overspeeding & Night Ratio",
+            "value": "4.0% / 6.0%",
+            "impact_pct": -10.8,
+            "category": "Real-Time Stream"
+          },
+          {
+            "factor": "Prior Claims (3-Year History)",
+            "value": "0 claims",
+            "impact_pct": -5.5,
+            "category": "Historical Data"
+          },
+          {
+            "factor": "Credit Stability Score (DP-Protected)",
+            "value": "747",
+            "impact_pct": -4.6,
+            "category": "Historical Data"
+          },
+          {
+            "factor": "2026 Fairness Constraint Adjustment",
+            "value": "Middle-Income Zone",
+            "impact_pct": 0.6,
+            "category": "2026 Governance"
+          }
+        ]
+      }
+    },
+    "fairness_showcase": {
+      "profile": {
+        "label": "Demo Case 2: Low-Income Zone Safe Driver (2026 Fairness Showcase)",
+        "applicant_name": "Kabir Verma",
+        "national_id": "ID-5920-8144",
+        "gender": "Male",
+        "region_income_tier": "Low-Income Zone",
+        "driver_age": 29,
+        "years_licensed": 9,
+        "prior_claims_3yr": 0,
+        "credit_stability_score": 635,
+        "vehicle_value_usd": 19500,
+        "vehicle_safety_rating": 4,
+        "annual_mileage_km": 13000,
+        "policy_tenure_years": 3.5,
+        "rt_telematics_score": 84.0,
+        "rt_harsh_braking_per_100km": 1.6,
+        "rt_night_driving_ratio": 0.14,
+        "rt_overspeed_ratio": 0.09,
+        "rt_weather_route_hazard_idx": 0.35
+      },
+      "evaluation": {
+        "probabilities": {
+          "uncalibrated_prob": 0.3531,
+          "platt_calibrated_prob": 0.1987,
+          "isotonic_calibrated_prob": 0.2119,
+          "final_underwriting_prob": 0.2049,
+          "fairness_shift_applied": -0.007
+        },
+        "pricing": {
+          "expected_claim_severity_usd": 2089.99,
+          "pure_premium_expected_loss_usd": 428.31,
+          "telematics_modifier_pct": -7.61,
+          "telematics_adjustment_usd": -32.59,
+          "fixed_admin_expense_usd": 115.0,
+          "solvency_and_expense_loading_usd": 161.28,
+          "annual_technical_premium_usd": 671.99,
+          "monthly_premium_usd": 56.0
+        },
+        "decision": {
+          "tier": "TIER 2: STANDARD RISK",
+          "action": "AUTO-APPROVE (Standard Actuarial Terms)",
+          "badge_color": "blue"
+        },
+        "privacy_audit": {
+          "enabled": true,
+          "epsilon": 2.5,
+          "applicant_token": "TOK-1772E5327D69",
+          "masked_national_id": "ID-XXXX-8144",
+          "raw_credit_score": 635,
+          "dp_credit_score": 628,
+          "raw_telematics_score": 84.0,
+          "dp_telematics_score": 83.7
+        },
+        "explainable_drivers": [
+          {
+            "factor": "Real-Time Telematics Score",
+            "value": "83.7 / 100",
+            "impact_pct": -8.8,
+            "category": "Real-Time Stream"
+          },
+          {
+            "factor": "Harsh Braking Frequency",
+            "value": "1.6 / 100km",
+            "impact_pct": -4.6,
+            "category": "Real-Time Stream"
+          },
+          {
+            "factor": "Overspeeding & Night Ratio",
+            "value": "9.0% / 14.0%",
+            "impact_pct": -6.1,
+            "category": "Real-Time Stream"
+          },
+          {
+            "factor": "Prior Claims (3-Year History)",
+            "value": "0 claims",
+            "impact_pct": -5.5,
+            "category": "Historical Data"
+          },
+          {
+            "factor": "Credit Stability Score (DP-Protected)",
+            "value": "628",
+            "impact_pct": 5.0,
+            "category": "Historical Data"
+          },
+          {
+            "factor": "2026 Fairness Constraint Adjustment",
+            "value": "Low-Income Zone",
+            "impact_pct": -0.7,
+            "category": "2026 Governance"
+          }
+        ]
+      }
+    },
+    "realtime_speeder": {
+      "profile": {
+        "label": "Demo Case 3: Clean History but Aggressive Real-Time Telemetry",
+        "applicant_name": "Rohan Malhotra",
+        "national_id": "ID-8812-6021",
+        "gender": "Male",
+        "region_income_tier": "High-Income Zone",
+        "driver_age": 26,
+        "years_licensed": 6,
+        "prior_claims_3yr": 0,
+        "credit_stability_score": 740,
+        "vehicle_value_usd": 54000,
+        "vehicle_safety_rating": 4,
+        "annual_mileage_km": 22000,
+        "policy_tenure_years": 1.5,
+        "rt_telematics_score": 49.0,
+        "rt_harsh_braking_per_100km": 7.8,
+        "rt_night_driving_ratio": 0.46,
+        "rt_overspeed_ratio": 0.42,
+        "rt_weather_route_hazard_idx": 0.64
+      },
+      "evaluation": {
+        "probabilities": {
+          "uncalibrated_prob": 0.9121,
+          "platt_calibrated_prob": 0.738,
+          "isotonic_calibrated_prob": 0.8295,
+          "final_underwriting_prob": 0.8459,
+          "fairness_shift_applied": 0.0164
+        },
+        "pricing": {
+          "expected_claim_severity_usd": 6596.54,
+          "pure_premium_expected_loss_usd": 5579.91,
+          "telematics_modifier_pct": 13.39,
+          "telematics_adjustment_usd": 747.15,
+          "fixed_admin_expense_usd": 115.0,
+          "solvency_and_expense_loading_usd": 2034.34,
+          "annual_technical_premium_usd": 8476.4,
+          "monthly_premium_usd": 706.37
+        },
+        "decision": {
+          "tier": "TIER 4: HIGH RISK / DECLINE",
+          "action": "SENIOR UNDERWRITER REFERRAL / DECLINE",
+          "badge_color": "rose"
+        },
+        "privacy_audit": {
+          "enabled": true,
+          "epsilon": 2.5,
+          "applicant_token": "TOK-761D4CEE73DE",
+          "masked_national_id": "ID-XXXX-6021",
+          "raw_credit_score": 740,
+          "dp_credit_score": 723,
+          "raw_telematics_score": 49.0,
+          "dp_telematics_score": 51.4
+        },
+        "explainable_drivers": [
+          {
+            "factor": "Real-Time Telematics Score",
+            "value": "51.4 / 100",
+            "impact_pct": 15.5,
+            "category": "Real-Time Stream"
+          },
+          {
+            "factor": "Harsh Braking Frequency",
+            "value": "7.8 / 100km",
+            "impact_pct": 19.0,
+            "category": "Real-Time Stream"
+          },
+          {
+            "factor": "Overspeeding & Night Ratio",
+            "value": "42.0% / 46.0%",
+            "impact_pct": 18.3,
+            "category": "Real-Time Stream"
+          },
+          {
+            "factor": "Prior Claims (3-Year History)",
+            "value": "0 claims",
+            "impact_pct": -5.5,
+            "category": "Historical Data"
+          },
+          {
+            "factor": "Credit Stability Score (DP-Protected)",
+            "value": "723",
+            "impact_pct": -2.6,
+            "category": "Historical Data"
+          },
+          {
+            "factor": "2026 Fairness Constraint Adjustment",
+            "value": "High-Income Zone",
+            "impact_pct": 1.6,
+            "category": "2026 Governance"
+          }
+        ]
+      }
+    },
+    "high_risk_decline": {
+      "profile": {
+        "label": "Demo Case 4: Multi-Claim + Severe Real-Time Hazard (Referral/Decline)",
+        "applicant_name": "Vikram Reddy",
+        "national_id": "ID-3391-4409",
+        "gender": "Male",
+        "region_income_tier": "Middle-Income Zone",
+        "driver_age": 22,
+        "years_licensed": 3,
+        "prior_claims_3yr": 3,
+        "credit_stability_score": 540,
+        "vehicle_value_usd": 42000,
+        "vehicle_safety_rating": 2,
+        "annual_mileage_km": 28500,
+        "policy_tenure_years": 0.5,
+        "rt_telematics_score": 34.5,
+        "rt_harsh_braking_per_100km": 11.4,
+        "rt_night_driving_ratio": 0.58,
+        "rt_overspeed_ratio": 0.55,
+        "rt_weather_route_hazard_idx": 0.78
+      },
+      "evaluation": {
+        "probabilities": {
+          "uncalibrated_prob": 0.8341,
+          "platt_calibrated_prob": 0.7064,
+          "isotonic_calibrated_prob": 0.7687,
+          "final_underwriting_prob": 0.7747,
+          "fairness_shift_applied": 0.0061
+        },
+        "pricing": {
+          "expected_claim_severity_usd": 6527.89,
+          "pure_premium_expected_loss_usd": 5057.4,
+          "telematics_modifier_pct": 23.21,
+          "telematics_adjustment_usd": 1173.82,
+          "fixed_admin_expense_usd": 115.0,
+          "solvency_and_expense_loading_usd": 2004.07,
+          "annual_technical_premium_usd": 8350.29,
+          "monthly_premium_usd": 695.86
+        },
+        "decision": {
+          "tier": "TIER 4: HIGH RISK / DECLINE",
+          "action": "SENIOR UNDERWRITER REFERRAL / DECLINE",
+          "badge_color": "rose"
+        },
+        "privacy_audit": {
+          "enabled": true,
+          "epsilon": 2.5,
+          "applicant_token": "TOK-4202C61C60E3",
+          "masked_national_id": "ID-XXXX-4409",
+          "raw_credit_score": 540,
+          "dp_credit_score": 551,
+          "raw_telematics_score": 34.5,
+          "dp_telematics_score": 36.3
+        },
+        "explainable_drivers": [
+          {
+            "factor": "Real-Time Telematics Score",
+            "value": "36.3 / 100",
+            "impact_pct": 26.8,
+            "category": "Real-Time Stream"
+          },
+          {
+            "factor": "Harsh Braking Frequency",
+            "value": "11.4 / 100km",
+            "impact_pct": 32.7,
+            "category": "Real-Time Stream"
+          },
+          {
+            "factor": "Overspeeding & Night Ratio",
+            "value": "55.0% / 58.0%",
+            "impact_pct": 27.8,
+            "category": "Real-Time Stream"
+          },
+          {
+            "factor": "Prior Claims (3-Year History)",
+            "value": "3 claims",
+            "impact_pct": 38.0,
+            "category": "Historical Data"
+          },
+          {
+            "factor": "Credit Stability Score (DP-Protected)",
+            "value": "551",
+            "impact_pct": 11.1,
+            "category": "Historical Data"
+          },
+          {
+            "factor": "2026 Fairness Constraint Adjustment",
+            "value": "Middle-Income Zone",
+            "impact_pct": 0.6,
+            "category": "2026 Governance"
+          }
+        ]
+      }
+    }
+  }
+}
